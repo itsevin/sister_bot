@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "sister_bot"
+version = "0.1.0"
+description = "基于 Nonebot2 和 go-cqhttp 开发的QQ机器人，不正经的妹妹"
+authors = ["ITSevin <itsevin@qq.com>"]
+license = "AGPL-3.0"
+readme = "README.md"
+homepage = "https://github.com/itsevin/sister_bot"
+repository = "https://github.com/itsevin/sister_bot"
+documentation = "https://github.com/itsevin/sister_bot#readme"
+keywords = ["nonebot", "nonebot2", "qqbot", "gocqhttp", "bot"]
+
+[[tool.poetry.source]]
+name = "ali"
+default = true
+url = "https://mirrors.aliyun.com/pypi/simple/"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+nonebot2 = "^2.0.0rc1"
+httpx = "^0.23.0"
+nonebot-adapter-onebot = "^2.1.5"
+nonebot-plugin-apscheduler = "^0.2.0"
+nonebot-plugin-htmlrender = "^0.2.0"
+nonebot-plugin-gocqhttp = {extras = ["proxy"], version = "^0.6.4"}
+nonebot-plugin-imageutils = "^0.1.13.4"
+
+[tool.poetry.dev-dependencies]
+
+[tool.nonebot]
+plugins = ["nonebot-plugin-gocqhttp"]
+plugin_dirs = ["src/plugins"]
+
+[build-system]
+requires = ["poetry_core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

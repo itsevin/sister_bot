@@ -1,0 +1,17 @@
+from nonebot import on_notice
+from nonebot.typing import T_State
+from nonebot.adapters import Bot
+from nonebot.adapters.onebot.v11 import Message
+from nonebot.adapters.onebot.v11 import GroupIncreaseNoticeEvent
+
+
+welcome = on_notice()
+
+
+@welcome.handle()
+async def main(bot: Bot, event: GroupIncreaseNoticeEvent, state: T_State):
+    user = event.get_user_id()
+    at_ = "欢迎：[CQ:at,qq={}]".format(user)
+    msg = at_ + '加入！我是机器人不正经的妹妹，发送“菜单”查看我的详细功能吧！'
+    msg = Message(msg)
+    await welcome.finish(message=Message(msg))
