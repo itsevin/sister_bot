@@ -7,12 +7,12 @@ import requests
 xjjsp = on_command('小姐姐视频')
 
 
-@xjjsp.handle ()
+@xjjsp.handle()
 async def main(bot: Bot, event: GroupMessageEvent, state: T_State):
     await xjjsp.finish("此功能仅限于私聊，请加好友使用")
 
 
-@xjjsp.handle ()
+@xjjsp.handle()
 async def main(bot: Bot, event: PrivateMessageEvent, state: T_State):
     msg = await get_data()
     await xjjsp.finish(MessageSegment.video(msg))
@@ -21,6 +21,7 @@ async def main(bot: Bot, event: PrivateMessageEvent, state: T_State):
 async def get_data():
     headers = {'Connection': 'close'}
     url = 'https://tucdn.wpon.cn/api-girl/index.php?wpon=url'
-    resp = requests.get(url, headers=headers, timeout=1)
+    resp = requests.get(url, headers=headers, timeout=3)
     data = "https:" + resp.text.strip()
+    resp.close()
     return data

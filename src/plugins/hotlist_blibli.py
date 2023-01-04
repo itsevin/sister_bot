@@ -1,5 +1,5 @@
 from nonebot import on_command
-from nonebot.adapters.onebot.v11 import GroupMessageEvent, Bot, Message
+from nonebot.adapters.onebot.v11 import Event, Bot, Message
 from nonebot.typing import T_State
 import requests
 import json
@@ -9,7 +9,7 @@ bzrb = on_command('b站热榜')
 
 
 @bzrb.handle()
-async def main(bot: Bot, event: GroupMessageEvent, state: T_State):
+async def main(bot: Bot, event: Event, state: T_State):
     get_msg = str(event.get_message()).strip()
     if get_msg == "b站热榜":
         msg = get_datas()
@@ -29,13 +29,14 @@ async def main(bot: Bot, event: GroupMessageEvent, state: T_State):
 def get_datas():
     headers = {'Connection': 'close'}
     url = 'https://api.vvhan.com/api/hotlist?type=bili'
-    resp = requests.get(url, headers=headers, timeout=1)
+    resp = requests.get(url, headers=headers, timeout=3)
     get_dic = json.loads(resp.text)
     get_list = get_dic["data"]
     datas = "b站热榜："
     for i in range(0, 10):
         datas = datas + "\n" + str(int(i) + 1) + "." + get_list[int(i)]["title"]
     datas = datas + "\n（查看详情请输入”b站热榜+编号“）"
+    resp.close()
     return datas
 
 
@@ -43,7 +44,7 @@ async def get_data(get_msg):
     get_msg = int(get_msg) - 1
     headers = {'Connection': 'close'}
     url = 'https://api.vvhan.com/api/hotlist?type=bili'
-    resp = requests.get(url, headers=headers, timeout=1)
+    resp = requests.get(url, headers=headers, timeout=3)
     get_dic = json.loads(resp.text)
     get_list = get_dic["data"]
     pic = get_list[get_msg]["pic"]
@@ -55,4 +56,5 @@ async def get_data(get_msg):
         data = Message(f"[CQ:image,file={pic}]\n标题：{title}\n介绍：{desc}\n热度：{hot}\n链接：{url}")
     else:
         data = "编号超出最大范围"
+    resp.close()
     return data

@@ -11,6 +11,7 @@ kt = on_command('看腿')
 async def main(bot: Bot, event: GroupMessageEvent, state: T_State):
     await kt.finish("此功能仅限于私聊，请加好友使用")
 
+
 @kt.handle()
 async def main(bot: Bot, event: PrivateMessageEvent, state: T_State):
     msg = await get_pic()
@@ -20,6 +21,7 @@ async def main(bot: Bot, event: PrivateMessageEvent, state: T_State):
 async def get_pic():
     headers = {'Connection': 'close'}
     url = 'http://81.70.100.130/api/tu.php'
-    resp = requests.get(url, headers=headers, timeout=1)
+    resp = requests.get(url, headers=headers, timeout=3)
     data = resp.text.replace("\n", "").strip()
+    resp.close()
     return data
