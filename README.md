@@ -12,11 +12,11 @@
 		<img src="https://img.shields.io/badge/文档-Docs-FDE6E0?style=flat&logo=Blogger" title="文档">
 	</a>&emsp;
     <!-- GitHub主页 -->
-	<a style="margin-inline:5px" target="_blank" href="https://github.com/itsevin/qqbot">
+	<a style="margin-inline:5px" target="_blank" href="https://github.com/itsevin/sister_bot">
 		<img src="https://img.shields.io/badge/GitHub-Home-blue?style=flat&logo=GitHub" title="Github主页">
 	</a>&emsp;
 	<!-- Gitee主页 -->
-	<a style="margin-inline:5px" target="_blank" href="https://gitee.com/itsevin/qqbot">
+	<a style="margin-inline:5px" target="_blank" href="https://gitee.com/itsevin/sister_bot">
 		<img src="https://img.shields.io/badge/Gitee-Home-blue?style=flat&logo=Gitee" title="Gitee主页">
 	</a>&emsp;
 	<!-- py版本 -->
@@ -33,7 +33,7 @@
 
 ## 描述
 
-一款基于[NoneBot2](https://v2.nonebot.dev/)和[gocahttp](https://docs.go-cqhttp.org/)开发的功能丰富、简单易用的QQ机器人
+一款基于[NoneBot2](https://v2.nonebot.dev/)和[gocqhttp](https://docs.go-cqhttp.org/)开发的功能丰富、简单易用的QQ机器人
 
 文档：https://bot.sevin.cn
 
