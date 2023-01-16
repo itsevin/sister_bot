@@ -11,11 +11,11 @@ chat = on_command('*')
 @chat.handle()
 async def main(bot: Bot, event: Event, state: T_State):
     get_msg = str(event.get_message()).strip().strip('*')
-    msg = get_data(get_msg)
+    msg = await get_data(get_msg)
     await chat.finish(msg)
 
 
-def get_data(get_msg):
+async def get_data(get_msg):
     headers = {'Connection': 'close'}
     url = f'http://api.qingyunke.com/api.php?key=free&appid=0&msg={get_msg}'
     resp = requests.get(url, headers=headers, timeout=3)

@@ -1,9 +1,9 @@
-from nonebot import on_command
-from nonebot.typing import T_State
-from nonebot.adapters.onebot.v11 import Event, Bot, Message
-import requests
 import json
 
+import requests
+from nonebot import on_command
+from nonebot.adapters.onebot.v11 import Event, Bot, Message
+from nonebot.typing import T_State
 
 yq = on_command('疫情')
 
