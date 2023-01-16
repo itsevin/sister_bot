@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "sister_bot"
-version = "0.1.0"
+version = "1.0.0"
 description = "基于 Nonebot2 和 go-cqhttp 开发的QQ机器人，不正经的妹妹"
 authors = ["ITSevin <itsevin@qq.com>"]
 license = "AGPL-3.0"
