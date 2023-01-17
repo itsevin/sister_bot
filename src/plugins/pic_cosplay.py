@@ -1,22 +1,20 @@
 from nonebot import on_command
-from nonebot.typing import T_State
-from nonebot.adapters.onebot.v11 import Event, Bot, MessageSegment
-import requests
+from nonebot.adapters.onebot.v11 import MessageSegment
+import httpx
 
 
 cosplay = on_command('cosplay')
 
 
 @cosplay.handle()
-async def main(bot: Bot, event: Event, state: T_State):
+async def main():
     msg = await get_data()
     await cosplay.finish(MessageSegment.image(msg))
 
 
 async def get_data():
-    headers = {'Connection': 'close'}
     url = 'https://api.sevin.cn/api/cos.php'
-    resp = requests.get(url, headers=headers, timeout=3)
-    data = resp.text.strip()
-    resp.close()
+    async with httpx.AsyncClient() as client:
+        resp = await client.get(url)
+        data = resp.text.strip()
     return data

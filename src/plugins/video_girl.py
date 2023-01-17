@@ -1,27 +1,29 @@
 from nonebot import on_command
-from nonebot.typing import T_State
-from nonebot.adapters.onebot.v11 import GroupMessageEvent, PrivateMessageEvent, Bot, MessageSegment
-import requests
+from nonebot.adapters.onebot.v11 import (
+    GroupMessageEvent,
+    PrivateMessageEvent,
+    MessageSegment
+)
+import httpx
 
 
 xjjsp = on_command('小姐姐视频')
 
 
 @xjjsp.handle()
-async def main(bot: Bot, event: GroupMessageEvent, state: T_State):
+async def main(event: GroupMessageEvent):
     await xjjsp.finish("此功能仅限于私聊，请加好友使用")
 
 
 @xjjsp.handle()
-async def main(bot: Bot, event: PrivateMessageEvent, state: T_State):
+async def main(event: PrivateMessageEvent):
     msg = await get_data()
     await xjjsp.finish(MessageSegment.video(msg))
 
 
 async def get_data():
-    headers = {'Connection': 'close'}
     url = 'https://tucdn.wpon.cn/api-girl/index.php?wpon=url'
-    resp = requests.get(url, headers=headers, timeout=3)
-    data = "https:" + resp.text.strip()
-    resp.close()
+    async with httpx.AsyncClient() as client:
+        resp = await client.get(url)
+        data = "https:" + resp.text.strip()
     return data

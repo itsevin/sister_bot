@@ -1,8 +1,12 @@
 from nonebot import on_command, on_request
 from nonebot.typing import T_State
-from nonebot.adapters.onebot.v11 import GroupMessageEvent, Bot, GroupRequestEvent
-import warnings
 from nonebot.permission import *
+from nonebot.adapters.onebot.v11 import (
+    GroupMessageEvent,
+    GroupRequestEvent,
+    Bot
+)
+import warnings
 import re
 
 
@@ -114,7 +118,6 @@ async def move(bot: Bot, event: GroupMessageEvent, state: T_State):
     async def group_owner(event: GroupMessageEvent) -> bool:
         return event.sender.role == "owner"
 
-    print(group_admin(event))
     if event.sender.role == "admin" or event.sender.role == "owner":
         data = str(event.message)
         group_id = event.group_id

@@ -1,7 +1,6 @@
 from nonebot import on_command
-from nonebot.typing import T_State
-from nonebot.adapters.onebot.v11 import Event, Bot, MessageSegment
-import requests
+from nonebot.adapters.onebot.v11 import MessageSegment
+import httpx
 import json
 
 
@@ -9,17 +8,16 @@ sjbz = on_command('随机壁纸')
 
 
 @sjbz.handle()
-async def main(bot: Bot, event: Event, state: T_State):
+async def main():
     msg = await get_pic()
     await sjbz.finish(MessageSegment.image(msg))
 
 
 async def get_pic():
-    headers = {'Connection': 'close'}
     url = 'https://api.vvhan.com/api/bing?type=json&rand=sj'
-    resp = requests.get(url, headers=headers, timeout=3)
-    get_dic1 = json.loads(resp.text)
+    async with httpx.AsyncClient() as client:
+        resp = await client.get(url)
+        get_dic1 = json.loads(resp.text)
     get_dic2 = get_dic1["data"]
     data = get_dic2["url"]
-    resp.close()
     return data

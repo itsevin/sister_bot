@@ -1,20 +1,35 @@
 from nonebot.adapters.onebot.v11 import (
+    GroupMessageEvent,
+    PrivateMessageEvent,
     Event,
     Bot
 )
-from nonebot import require
+from nonebot import (
+    require,
+    on_command
+)
 require('nonebot_plugin_record')
 from nonebot_plugin_record import (
     on_record,
     get_text,
     record_tts
 )
-
 import httpx
 import json
 
 
 chat = on_record()
+yylt = on_command("语音聊天")
+
+
+@yylt.handle()
+async def main(event: GroupMessageEvent):
+    await yylt.finish("此功能仅限于私聊，请加好友使用")
+
+
+@yylt.handle()
+async def main(event: PrivateMessageEvent):
+    await yylt.finish("请发送语音，仅限普通话")
 
 
 @chat.handle()

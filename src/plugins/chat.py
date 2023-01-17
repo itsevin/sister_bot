@@ -1,7 +1,6 @@
 from nonebot import on_command
-from nonebot.typing import T_State
-from nonebot.adapters.onebot.v11 import Bot, Event
-import requests
+from nonebot.adapters.onebot.v11 import Event
+import httpx
 import json
 
 
@@ -9,17 +8,16 @@ chat = on_command('*')
 
 
 @chat.handle()
-async def main(bot: Bot, event: Event, state: T_State):
+async def main(event: Event):
     get_msg = str(event.get_message()).strip().strip('*')
     msg = await get_data(get_msg)
     await chat.finish(msg)
 
 
 async def get_data(get_msg):
-    headers = {'Connection': 'close'}
     url = f'http://api.qingyunke.com/api.php?key=free&appid=0&msg={get_msg}'
-    resp = requests.get(url, headers=headers, timeout=3)
-    get_dic = json.loads(resp.text)
+    async with httpx.AsyncClient() as client:
+        resp = await client.get(url)
+        get_dic = json.loads(resp.text)
     data = get_dic['content'].replace('菲菲', '妹妹')
-    resp.close()
     return data

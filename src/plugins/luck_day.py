@@ -1,8 +1,8 @@
-import random
-from datetime import date
 from nonebot import on_command
-from nonebot.adapters.onebot.v11 import Bot, Event
+from nonebot.adapters.onebot.v11 import Event
 from nonebot.adapters.onebot.v11.message import Message
+from datetime import date
+import random
 
 
 def ys_simple(ys):
@@ -26,7 +26,7 @@ jrys = on_command('今日运势')
 
 
 @jrys.handle()
-async def jrys_handle(bot: Bot, event: Event):
+async def main(event: Event):
     rnd = random.Random()
     rnd.seed((int(date.today().strftime("%y%m%d")) * 45) * (int(event.get_user_id()) * 55))
     yunshi = rnd.randint(1, 100)
