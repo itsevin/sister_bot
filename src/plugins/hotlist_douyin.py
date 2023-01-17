@@ -11,7 +11,7 @@ dyrb = on_command('抖音热榜')
 async def main(event: Event):
     get_msg = str(event.get_message()).strip()
     if get_msg == "抖音热榜":
-        msg = get_datas()
+        msg = await get_datas()
         await dyrb.finish(msg)
     else:
         try:
@@ -25,7 +25,7 @@ async def main(event: Event):
             await dyrb.finish("请使用正确格式，请发送“抖音热榜”获取功能说明")
 
 
-def get_datas():
+async def get_datas():
     url = 'https://api.vvhan.com/api/hotlist?type=douyinHot'
     async with httpx.AsyncClient() as client:
         resp = await client.get(url)

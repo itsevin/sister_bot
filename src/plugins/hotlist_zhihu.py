@@ -14,7 +14,7 @@ zhrb = on_command('知乎热榜')
 async def main(event: Event):
     get_msg = str(event.get_message()).strip()
     if get_msg == "知乎热榜":
-        msg = get_datas()
+        msg = await get_datas()
         await zhrb.finish(msg)
     else:
         try:
@@ -28,7 +28,7 @@ async def main(event: Event):
             await zhrb.finish(Message("请使用正确格式，请发送“知乎热榜”获取功能说明"))
 
 
-def get_datas():
+async def get_datas():
     url = 'https://api.sevin.cn/api/hotlist.php?type=zhihu'
     async with httpx.AsyncClient() as client:
         resp = await client.get(url)

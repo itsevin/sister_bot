@@ -8,11 +8,11 @@ bdrb = on_command('百度热榜')
 
 @bdrb.handle()
 async def main():
-    msg = get_data()
+    msg = await get_data()
     await bdrb.finish(msg)
 
 
-def get_data():
+async def get_data():
     url = 'https://api.sevin.cn/api/hotlist.php?type=baidu'
     async with httpx.AsyncClient() as client:
         resp = await client.get(url)

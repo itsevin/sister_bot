@@ -11,7 +11,7 @@ wbrb = on_command('微博热榜')
 async def main(event: Event):
     get_msg = str(event.get_message()).strip()
     if get_msg == "微博热榜":
-        msg = get_datas()
+        msg = await get_datas()
         await wbrb.finish(msg)
     else:
         try:
@@ -25,7 +25,7 @@ async def main(event: Event):
             await wbrb.finish("请使用正确格式，请发送“微博热榜”获取功能说明")
 
 
-def get_datas():
+async def get_datas():
     url = 'https://api.sevin.cn/api/hotlist.php?type=weibo'
     async with httpx.AsyncClient() as client:
         resp = await client.get(url)
