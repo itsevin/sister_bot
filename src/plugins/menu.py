@@ -14,17 +14,23 @@ yyxt = on_command('音乐系统')
 qgxt = on_command('群管系统')
 zzjs = on_command('作者介绍')
 bqsm = on_command('版权声明')
+bqbhc = on_command('表情包合成')
 hwlt = on_command('和我聊天')
 xzys = on_command('星座运势')
 zyhy = on_command('中英互译')
 yqcx = on_command('疫情查询')
 tqcx = on_command('天气查询')
-kxyy = on_command('可选语言')
+qndxxxt = on_command('青年大学习系统')
+xxch = on_command('消息撤回')
+dmyx = on_command('代码运行')
 rsck = on_command('人生重开系统')
 slxt = on_command('扫雷系统')
 tlpxt = on_command('塔罗牌系统')
 cdcxt = on_command('猜单词系统')
 ccyxt = on_command('猜成语系统')
+gjqlxt = on_command('国际棋类系统')
+xqxt = on_command('象棋系统')
+mgxt = on_command('迷宫系统')
 ysl = on_command('运势类')
 wbl = on_command('文本类')
 xwrbl = on_command('新闻热榜类')
@@ -90,7 +96,7 @@ async def main():
 
 @gjxt.handle()  # 工具系统响应体
 async def main():
-    data = "1.疫情查询\n2.天气查询\n3.中英互译\n4.qq估价\n防封编码："
+    data = "1.青年大学习系统\n2.疫情查询\n3.天气查询\n4.中英互译\n5.qq估价\n6.消息撤回\n7.代码运行\n防封编码："
     data += str(random.randint(10000, 99999))
     await gjxt.finish(data)
 
@@ -104,14 +110,14 @@ async def main():
 
 @yxxt.handle()  # 游戏系统响应体
 async def main():
-    data = "1.人生重开系统\n2.扫雷系统\n3.塔罗牌系统\n4.猜单词系统\n5.猜成语系统\n防封编码："
+    data = "1.人生重开系统\n2.扫雷系统\n3.塔罗牌系统\n4.猜单词系统\n5.猜成语系统\n6.国际棋类系统\n7.象棋系统\n8.迷宫系统\n防封编码："
     data += str(random.randint(10000, 99999))
     await gjxt.finish(data)
 
 
 @bqbxt.handle()  # 表情包系统响应体
 async def main():
-    data = "1.头像表情包\n2.文字表情包\nPS：\n输入上面的指令获取表情包模板\n头像表情包例子：“吃 @网安社”\n文字表情包例子：“鲁迅说 我没说过这句话”\n防封编码："
+    data = "1.头像表情包\n2.文字表情包\n3.表情包合成\nPS：\n输入上面的指令获取表情包模板\n头像表情包例子：“吃 @网安社”\n文字表情包例子：“鲁迅说 我没说过这句话”\n防封编码："
     data += str(random.randint(10000, 99999))
     await bqbxt.finish(data)
 
@@ -135,6 +141,13 @@ async def main():
     data = "机器人作者：Sevin\n机器人开源地址：\ngitee.com/itsevin/botplugins\n机器人有问题请联系作者\n或者通过提交issues\n防封编码："
     data += str(random.randint(10000, 99999))
     await bqsm.finish(data)
+
+
+@bqbhc.handle()  # 表情包合成响应体
+async def main():
+    data = "触发示例：😎+😁=？\n防封编码："
+    data += str(random.randint(10000, 99999))
+    await bqbhc.finish(data)
 
 
 @hwlt.handle()  # 和我聊天响应体
@@ -167,16 +180,30 @@ async def main():
 
 @tqcx.handle()  # 天气查询响应体
 async def main():
-    data = "输入“天气+城市名”，如:“天气泉州”\n高级玩法：\n输入“天气+城市名_lang=语言”以特定语言查询天气\n如：“天气北京_lang=ru”\n输入“可选语言”获取支持的语言\n输入“天气 Moon”以查看月相\n防封编码："
+    data = "输入“天气+城市名”，如:“天气泉州”\n防封编码："
     data += str(random.randint(10000, 99999))
     await tqcx.finish(data)
 
 
-@kxyy.handle()  # 可选语言响应体
+@qndxxxt.handle()  # 青年大学习系统响应体
 async def main():
-    data = "可选语言：ar af be ca da de el et fr fa hu ia id it lt mg nb nl oc pl pt-br ro ru tr uk vi zh-cn zh-tw\n防封编码："
+    data = "输入“青年大学习”获取大学习答案\n输入“开启大学习推送”开启推送，仅限私聊\n输入“大学习截图”获取主页截图\n输入”完成截图“获取大学习完成截图\n防封编码："
     data += str(random.randint(10000, 99999))
-    await kxyy.finish(data)
+    await qndxxxt.finish(data)
+
+
+@xxch.handle()  # 消息撤回响应体
+async def main():
+    data = "对我的消息回复“撤回”可帮我撤回不合适的言论喔\n防封编码："
+    data += str(random.randint(10000, 99999))
+    await xxch.finish(data)
+
+
+@dmyx.handle()  # 代码运行响应体
+async def main():
+    data = "指令如下\ncode [语言] [-i] [inputText]\n-i：可选输入 后跟输入内容\n运行代码示例(python)(无输入)\n    code py        \nprint("你好")\n运行代码示例(python)(有输入)：\n    code py -i 你好\n        print(input())\n防封编码："
+    data += str(random.randint(10000, 99999))
+    await dmyx.finish(data)
 
 
 @dg.handle()  # 点歌响应体
@@ -220,3 +247,24 @@ async def main():
     data = "开始游戏输入：“@不正经的妹妹 猜单词”\n游戏规则：\n绿色块代表此单词中有此字母且位置正确\n黄色块代表此单词中有此字母，但该字母所处位置不对\n灰色块代表此单词中没有此字母\n猜出单词或用光次数则游戏结束\n可发送“结束”结束游戏\n可发送“提示”查看提示\n高级玩法：\n可使用 -l / --length 指定单词长度，默认为 5\n可使用 -d / --dic 指定词典，默认为 CET4\n支持的词典：GRE、考研、GMAT、专四、TOEFL、SAT、专八、IELTS、CET4、CET6\n防封编码："
     data += str(random.randint(10000, 99999))
     await cdcxt.finish(data)
+
+
+@gjqlxt.handle()  # 国际棋类系统响应体
+async def main():
+    data = "棋类：五子棋、围棋（禁全同，暂时不支持点目）、黑白棋\n开始游戏输入：“@不正经的妹妹+棋类”,一个群内同时只能有一个棋局\n发送“落子 字母+数字”下棋，如“落子 A1”\n游戏发起者默认为先手，可使用 --white 选项选择后手\n发送“结束下棋”结束当前棋局\n发送“查看棋局”显示当前棋局\n发送“悔棋”可以进行悔棋\n发送“跳过回合”可跳过当前回合（仅黑白棋支持）\n手动结束游戏或超时结束游戏时，可发送“重载xx棋局”继续下棋，如:重载围棋棋局\n防封编码："
+    data += str(random.randint(10000, 99999))
+    await gjqlxt.finish(data)
+
+
+@xqxt.handle()  # 象棋系统响应体
+async def main():
+    data = "开始游戏输入“@不正经的妹妹 象棋人机/象棋对战”\n可使用“lv1~8”指定AI等级，如“象棋人机lv5”，默认为“lv4”\n发送 中文纵线格式如“炮二平五” 或 起始坐标格式如“h2e2”下棋\n发送“结束下棋”结束当前棋局\n发送“显示棋盘”显示当前棋局\n发送“悔棋”可进行悔棋（人机模式可无限悔棋,对战模式只能撤销自己上一手下的棋）\n防封编码："
+    data += str(random.randint(10000, 99999))
+    await xqxt.finish(data)
+
+
+mgxt.handle()  # 迷宫系统响应体
+async def main():
+    data = "使用以下命令开始游戏，需加上命令前缀！\nmaze [-r --rows <ROWS>] [-c --cols <COLUMNS>] [-m --method <ALGORITHM>]\n可使用-r规定迷宫的行数，-c规定迷宫的列数\n可使用-m规定迷宫的生成算法，目前支持DFS，Prim，Kruskal三种算法，默认值为Kruskal\n开始游戏后需要持续发送操作序列以在迷宫中移动，直到解开迷宫\n操作格式为“方向+步数”，方向分上下左右，步数为1表示一个方向走到尽头，不填步数为走1步，其余步数正常\n操作序列就是多个操作写在一起\n游戏中可以输入“结束“或”quit“退出游戏并获取参考解法\n防封编码："
+    data += str(random.randint(10000, 99999))
+    await mgxt.finish(data)
