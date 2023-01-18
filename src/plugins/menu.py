@@ -201,7 +201,7 @@ async def main():
 
 @dmyx.handle()  # 代码运行响应体
 async def main():
-    data = "指令如下\ncode [语言] [-i] [inputText]\n-i：可选输入 后跟输入内容\n运行代码示例(python)(无输入)\n    code py        \nprint("你好")\n运行代码示例(python)(有输入)：\n    code py -i 你好\n        print(input())\n防封编码："
+    data = "指令如下\ncode [语言] [-i] [inputText]\n-i：可选输入 后跟输入内容\n运行代码示例(python)(无输入)\n    code py        \nprint('你好')\n运行代码示例(python)(有输入)：\n    code py -i 你好\n        print(input())\n防封编码："
     data += str(random.randint(10000, 99999))
     await dmyx.finish(data)
 
@@ -263,7 +263,7 @@ async def main():
     await xqxt.finish(data)
 
 
-mgxt.handle()  # 迷宫系统响应体
+@mgxt.handle()  # 迷宫系统响应体
 async def main():
     data = "使用以下命令开始游戏，需加上命令前缀！\nmaze [-r --rows <ROWS>] [-c --cols <COLUMNS>] [-m --method <ALGORITHM>]\n可使用-r规定迷宫的行数，-c规定迷宫的列数\n可使用-m规定迷宫的生成算法，目前支持DFS，Prim，Kruskal三种算法，默认值为Kruskal\n开始游戏后需要持续发送操作序列以在迷宫中移动，直到解开迷宫\n操作格式为“方向+步数”，方向分上下左右，步数为1表示一个方向走到尽头，不填步数为走1步，其余步数正常\n操作序列就是多个操作写在一起\n游戏中可以输入“结束“或”quit“退出游戏并获取参考解法\n防封编码："
     data += str(random.randint(10000, 99999))

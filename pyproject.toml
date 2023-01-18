@@ -30,8 +30,7 @@ nonebot-plugin-petpet = "^0.3.19"
 nonebot-plugin-remake = "^0.2.7"
 nonebot-plugin-savor = "^0.2.1"
 nonebot-plugin-simplemusic = "^0.1.5"
-nonebot-plugin-tarot = "^0.3.3"
-nonebot-plugin-weather-lite = "^0.0.1"
+nonebot-plugin-tarot = "^0.3.3"、
 nonebot-plugin-wordle = "^0.1.11"
 nonebot-plugin-record = "^1.0.2"
 nonebot-plugin-today-in-history = "^0.1.0"
@@ -49,7 +48,7 @@ nonebot-plugin-heweather = "^0.6.0"
 adapters = [
     { name = "OneBot V11", module_name = "nonebot.adapters.onebot.v11" }
 ]
-plugins = ["nonebot_plugin_apscheduler", "nonebot_plugin_htmlrender", "nonebot_plugin_imageutils", "nonebot_plugin_handle", "nonebot_plugin_memes", "nonebot_plugin_minesweeper", "nonebot_plugin_petpet", "nonebot_plugin_read_60s", "nonebot_plugin_remake", "nonebot_plugin_savor", "nonebot_plugin_simplemusic", "nonebot_plugin_tarot", "nonebot_plugin_today_in_history", "nonebot_plugin_wordle", "nonebot_plugin_weather_lite", "nonebot_plugin_record", "nonebot_plugin_boardgame", "nonebot_plugin_cchess", "nonebot_plugin_emojimix", "nonebot_plugin_maze", "nonebot_plugin_youthstudy", "nonebot_plugin_withdraw", "nonebot_plugin_code", "nonebot_plugin_heweather"]
+plugins = ["nonebot_plugin_apscheduler", "nonebot_plugin_htmlrender", "nonebot_plugin_imageutils", "nonebot_plugin_handle", "nonebot_plugin_memes", "nonebot_plugin_minesweeper", "nonebot_plugin_petpet", "nonebot_plugin_read_60s", "nonebot_plugin_remake", "nonebot_plugin_savor", "nonebot_plugin_simplemusic", "nonebot_plugin_tarot", "nonebot_plugin_today_in_history", "nonebot_plugin_wordle", "nonebot_plugin_record", "nonebot_plugin_boardgame", "nonebot_plugin_cchess", "nonebot_plugin_emojimix", "nonebot_plugin_maze", "nonebot_plugin_youthstudy", "nonebot_plugin_withdraw", "nonebot_plugin_code", "nonebot_plugin_heweather"]
 plugin_dirs = ["src/plugins"]
 builtin_plugins = []
 
