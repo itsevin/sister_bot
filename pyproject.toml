@@ -22,7 +22,6 @@ httpx = "^0.23.0"
 nonebot-plugin-apscheduler = "^0.2.0"
 nonebot-plugin-htmlrender = "^0.2.0"
 nonebot-plugin-imageutils = "^0.1.13.4"
-nonebot-plugin-gocqhttp = "^0.6.4"
 nonebot-adapter-onebot = "^2.2.0"
 nonebot-plugin-handle = "^0.1.6"
 nonebot-plugin-memes = "^0.3.9"
@@ -42,7 +41,7 @@ nonebot-plugin-read-60s = "^0.2.4"
 adapters = [
     { name = "OneBot V11", module_name = "nonebot.adapters.onebot.v11" }
 ]
-plugins = ["nonebot_plugin_gocqhttp", "nonebot_plugin_apscheduler", "nonebot_plugin_htmlrender", "nonebot_plugin_imageutils", "nonebot_plugin_handle", "nonebot_plugin_memes", "nonebot_plugin_minesweeper", "nonebot_plugin_petpet", "nonebot_plugin_read_60s", "nonebot_plugin_remake", "nonebot_plugin_savor", "nonebot_plugin_simplemusic", "nonebot_plugin_tarot", "nonebot_plugin_today_in_history", "nonebot_plugin_wordle", "nonebot_plugin_weather_lite", "nonebot_plugin_record"]
+plugins = ["nonebot_plugin_apscheduler", "nonebot_plugin_htmlrender", "nonebot_plugin_imageutils", "nonebot_plugin_handle", "nonebot_plugin_memes", "nonebot_plugin_minesweeper", "nonebot_plugin_petpet", "nonebot_plugin_read_60s", "nonebot_plugin_remake", "nonebot_plugin_savor", "nonebot_plugin_simplemusic", "nonebot_plugin_tarot", "nonebot_plugin_today_in_history", "nonebot_plugin_wordle", "nonebot_plugin_weather_lite", "nonebot_plugin_record"]
 plugin_dirs = ["src/plugins"]
 builtin_plugins = []
 
