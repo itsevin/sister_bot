@@ -5,7 +5,7 @@ from typing import Literal, Optional
 from nonebot import logger
 from pydantic import BaseModel
 
-from .._config import BaseConfig, init
+from config_basic import BaseConfig, init
 
 config = None
 

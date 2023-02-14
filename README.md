@@ -20,7 +20,7 @@
 		<img src="https://img.shields.io/badge/Gitee-Home-blue?style=flat&logo=Gitee" title="Gitee主页">
 	</a>&emsp;
 	<!-- py版本 -->
-	<img src="https://img.shields.io/badge/python-3.8+-blue" alt="python">
+	<img src="https://img.shields.io/badge/｀python-3.8+-blue" alt="python">
     <!-- nonebot版本 -->
     <a style="margin-inline:5px" target="_blank" href="https://github.com/nonebot/nonebot2">
 		<img src="https://img.shields.io/badge/Nonebot2-latest-blue" title="nonebot2">

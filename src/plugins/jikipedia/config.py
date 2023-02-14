@@ -2,7 +2,7 @@ import asyncio
 
 from pydantic import BaseModel
 
-from .._config import init
+from config_basic import init
 
 config = None
 
