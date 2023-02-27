@@ -16,12 +16,12 @@ zzjs = on_command('作者介绍')
 bqsm = on_command('版权声明')
 bqbhc = on_command('表情包合成')
 hwlt = on_command('和我聊天')
+chatgpt = on_command("chatgpt")
 xzys = on_command('星座运势')
 zyhy = on_command('中英互译')
 tqcx = on_command('天气查询')
 qndxxxt = on_command('青年大学习系统')
 mcfztcx = on_command('mc服状态查询')
-githubckjjt = on_command('github仓库简介图')
 zzgj = on_command('站长工具')
 xxch = on_command('消息撤回')
 dmyx = on_command('代码运行')
@@ -78,7 +78,7 @@ async def main():
 
 @jhl.handle()  # 交互类响应体
 async def main():
-    data = "交互类：\n1、和我聊天\n2、语音聊天\n防封编码："
+    data = "交互类：\n1、和我聊天\n2、语音聊天\n3.chatgpt\n防封编码："
     data += str(random.randint(10000, 99999))
     await jhl.finish(data)
 
@@ -99,7 +99,7 @@ async def main():
 
 @gjxt.handle()  # 工具系统响应体
 async def main():
-    data = "1.青年大学习系统\n2.github仓库简介图\n3.mc服状态查询\n4.站长工具\n5.天气查询\n6.中英互译\n7.qq估价\n8.消息撤回\n9.代码运行\n10.淫语转换\n11.梗百科\n防封编码："
+    data = "1.青年大学习系统\n2.mc服状态查询\n3.站长工具\n4.天气查询\n5.中英互译\n6.qq估价\n7.消息撤回\n8.代码运行\n9.淫语转换\n防封编码："
     data += str(random.randint(10000, 99999))
     await gjxt.finish(data)
 
@@ -160,6 +160,13 @@ async def main():
     await hwlt.finish(data)
 
 
+@chatgpt.handle()  # chatgpt响应体
+async def main():
+    data = "输入“#”加你要和OpenAI ChatGpt发送的消息\n防封编码："
+    data += str(random.randint(10000, 99999))
+    await chatgpt.finish(data)
+
+
 @xzys.handle()  # 星座运势响应体
 async def main():
     data = "输入“星座+星座名”,如“星座天蝎座”\n防封编码："
@@ -193,13 +200,6 @@ async def main():
     data = "JE服务器状态查询指令：\n!motd <服务器 IP>[:端口]\nBE服务器状态查询指令：\n!motdpe <服务器 IP>[:端口]\nJE/BE服务器状态查询指令：\n!motdpe <服务器 IP>[:端口]防封编码："
     data += str(random.randint(10000, 99999))
     await mcfztcx.finish(data)
-
-
-@githubckjjt.handle()  # github仓库简介图
-async def main():
-    data = "发送github仓库地址获取自动生成的仓库简介图\n如：itseivn/sister_bot\nhttps://github.com/itsevin/sister_bot\n防封编码："
-    data += str(random.randint(10000, 99999))
-    await githubckjjt.finish(data)
 
 
 @zzgj.handle()  # 站长工具响应体
