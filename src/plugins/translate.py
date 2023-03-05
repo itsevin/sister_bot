@@ -3,7 +3,11 @@ from nonebot.adapters.onebot.v11 import Event
 import httpx
 
 
-fy = on_command('翻译')
+fy = on_command(
+    '翻译',
+    block=True,
+    priority=11
+)
 
 
 @fy.handle()

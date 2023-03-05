@@ -3,7 +3,11 @@ from nonebot.adapters.onebot.v11 import MessageSegment
 import httpx
 
 
-cosplay = on_command('cosplay')
+cosplay = on_command(
+    'cosplay',
+    block=True,
+    priority=11
+)
 
 
 @cosplay.handle()

@@ -19,7 +19,11 @@ import json
 
 
 chat = on_record()
-yylt = on_command("语音聊天")
+yylt = on_command(
+    "语音聊天",
+    block=True,
+    priority=11
+)
 
 
 @yylt.handle()

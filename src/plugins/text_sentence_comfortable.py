@@ -2,7 +2,11 @@ from nonebot import on_command
 import httpx
 
 
-awwa = on_command('安慰文案')
+awwa = on_command(
+    '安慰文案',
+    block=True,
+    priority=11
+)
 
 
 @awwa.handle()

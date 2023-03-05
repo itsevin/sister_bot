@@ -4,7 +4,11 @@ import random
 import json
 
 
-ktff = on_command('口吐芬芳')
+ktff = on_command(
+    '口吐芬芳',
+    block=True,
+    priority=11
+)
 
 
 @ktff.handle()

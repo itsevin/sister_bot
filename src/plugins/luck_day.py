@@ -22,7 +22,11 @@ def ys_simple(ys):
         return '凶'
 
 
-jrys = on_command('今日运势')
+jrys = on_command(
+    '今日运势',
+    block=True,
+    priority=11
+)
 
 
 @jrys.handle()

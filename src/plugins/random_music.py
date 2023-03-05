@@ -5,7 +5,11 @@ import json
 import re
 
 
-sjgq = on_command('随机歌曲')
+sjgq = on_command(
+    '随机歌曲',
+    block=True,
+    priority=11
+)
 
 
 @sjgq.handle()

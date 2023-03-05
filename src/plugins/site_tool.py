@@ -58,7 +58,7 @@ def format_json_time(t):
     )
 
 
-@on_command("二维码解析", aliases={"解析二维码", "二维码识别", "识别二维码"}).handle()
+@on_command("二维码解析", aliases={"解析二维码", "二维码识别", "识别二维码"}, block=True, priority=11).handle()
 @error_handle()
 async def _(matcher: Matcher, event: MessageEvent, args: Message = CommandArg()):
     if img := args["image"]:
@@ -77,7 +77,7 @@ async def _(matcher: Matcher, event: MessageEvent, args: Message = CommandArg())
     )
 
 
-@on_command("二维码生成", aliases={"生成二维码"}).handle()
+@on_command("二维码生成", aliases={"生成二维码"}, block=True, priority=11).handle()
 @error_handle()
 async def _(matcher: Matcher, args: Message = CommandArg()):
     if not (arg := args.extract_plain_text()):
@@ -98,7 +98,7 @@ async def _(matcher: Matcher, args: Message = CommandArg()):
     )
 
 
-@on_command("ping", aliases={"Ping", "PING"}).handle()
+@on_command("ping", aliases={"Ping", "PING"}, block=True, priority=11).handle()
 @error_handle()
 async def _(matcher: Matcher, args: Message = CommandArg()):
     if not (arg := args.extract_plain_text()):
@@ -119,7 +119,7 @@ async def _(matcher: Matcher, args: Message = CommandArg()):
     )
 
 
-@on_command("ICP查询", aliases={"icp查询", "Icp查询", "备案查询"}).handle()
+@on_command("ICP查询", aliases={"icp查询", "Icp查询", "备案查询"}, block=True, priority=11).handle()
 @error_handle()
 async def _(matcher: Matcher, args: Message = CommandArg()):
     if not (arg := args.extract_plain_text()):
@@ -142,7 +142,7 @@ async def _(matcher: Matcher, args: Message = CommandArg()):
     )
 
 
-@on_command("拦截检测").handle()
+@on_command("拦截检测", block=True, priority=11).handle()
 @error_handle()
 async def _(matcher: Matcher, args: Message = CommandArg()):
     if not (arg := args.extract_plain_text()):
@@ -167,7 +167,7 @@ async def _(matcher: Matcher, args: Message = CommandArg()):
     )
 
 
-@on_command("收录查询").handle()
+@on_command("收录查询", block=True, priority=11).handle()
 @error_handle()
 async def _(matcher: Matcher, args: Message = CommandArg()):
     if not (arg := args.extract_plain_text()):
@@ -191,7 +191,7 @@ async def _(matcher: Matcher, args: Message = CommandArg()):
     )
 
 
-@on_command("sping", aliases={"Sping", "SPing", "SPING"}).handle()
+@on_command("sping", aliases={"Sping", "SPing", "SPING"}, block=True, priority=11).handle()
 @error_handle()
 async def _(matcher: Matcher, args: Message = CommandArg()):
     if not (arg := args.extract_plain_text()):
@@ -221,7 +221,7 @@ async def _(matcher: Matcher, args: Message = CommandArg()):
     )
 
 
-@on_command("whois查询", aliases={"Whois查询", "WhoIs查询", "WHOIS查询"}).handle()
+@on_command("whois查询", aliases={"Whois查询", "WhoIs查询", "WHOIS查询"}, block=True, priority=11).handle()
 @error_handle()
 async def _(matcher: Matcher, args: Message = CommandArg()):
     if not (arg := args.extract_plain_text()):

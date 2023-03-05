@@ -2,7 +2,11 @@ from nonebot import on_command
 import httpx
 
 
-sgyl = on_command('伤感语录')
+sgyl = on_command(
+    '伤感语录',
+    block=True,
+    priority=11
+)
 
 
 @sgyl.handle()

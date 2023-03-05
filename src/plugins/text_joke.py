@@ -2,7 +2,11 @@ from nonebot import on_command
 import httpx
 
 
-jgxh = on_command('讲个笑话')
+jgxh = on_command(
+    '讲个笑话',
+    block=True,
+    priority=11
+)
 
 
 @jgxh.handle()

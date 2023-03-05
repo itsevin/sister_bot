@@ -4,7 +4,11 @@ import httpx
 import json
 
 
-dyrb = on_command('抖音热榜')
+dyrb = on_command(
+    '抖音热榜',
+    block=True,
+    priority=11
+)
 
 
 @dyrb.handle()

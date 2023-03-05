@@ -8,7 +8,11 @@ import random
 import json
 
 
-wallpaper = on_command('壁纸')
+wallpaper = on_command(
+    '壁纸',
+    block=True,
+    priority=11
+)
 
 
 @wallpaper.handle()

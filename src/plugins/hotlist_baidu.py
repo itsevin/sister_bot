@@ -3,7 +3,11 @@ import httpx
 import json
 
 
-bdrb = on_command('百度热榜')
+bdrb = on_command(
+    '百度热榜',
+    block=True,
+    priority=11
+)
 
 
 @bdrb.handle()

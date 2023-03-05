@@ -2,7 +2,11 @@ from nonebot import on_command
 import httpx
 
 
-zywa = on_command('中英文案')
+zywa = on_command(
+    '中英文案',
+    block=True,
+    priority=11
+)
 
 
 @zywa.handle()

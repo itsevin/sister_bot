@@ -3,7 +3,11 @@ from nonebot.adapters.onebot.v11 import MessageSegment
 import httpx
 
 
-jk = on_command('jk')
+jk = on_command(
+    'jk',
+    block=True,
+    priority=11
+)
 
 
 @jk.handle()

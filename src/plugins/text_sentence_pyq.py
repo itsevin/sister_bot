@@ -2,7 +2,11 @@ from nonebot import on_command
 import httpx
 
 
-pyqyy = on_command('朋友圈一言')
+pyqyy = on_command(
+    '朋友圈一言',
+    block=True,
+    priority=11
+)
 
 
 @pyqyy.handle()

@@ -7,7 +7,11 @@ from nonebot.adapters.onebot.v11 import (
 import httpx
 
 
-xjjsp = on_command('小姐姐视频')
+xjjsp = on_command(
+    '小姐姐视频',
+    block=True,
+    priority=11
+)
 
 
 @xjjsp.handle()

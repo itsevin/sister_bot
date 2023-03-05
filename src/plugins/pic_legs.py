@@ -7,7 +7,11 @@ from nonebot.adapters.onebot.v11 import (
 import httpx
 
 
-kt = on_command('看腿')
+kt = on_command(
+    '看腿',
+    block=True,
+    priority=11
+)
 
 
 @kt.handle()

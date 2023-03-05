@@ -2,7 +2,11 @@ from nonebot import on_command
 import httpx
 
 
-qgyy = on_command('情感一言')
+qgyy = on_command(
+    '情感一言',
+    block=True,
+    priority=11
+)
 
 
 @qgyy.handle()

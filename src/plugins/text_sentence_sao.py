@@ -2,7 +2,11 @@ from nonebot import on_command
 import httpx
 
 
-shwa = on_command('骚话文案')
+shwa = on_command(
+    '骚话文案',
+    block=True,
+    priority=11
+)
 
 
 @shwa.handle()

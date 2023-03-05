@@ -4,7 +4,11 @@ import httpx
 import json
 
 
-wbrb = on_command('微博热榜')
+wbrb = on_command(
+    '微博热榜',
+    block=True,
+    priority=11
+)
 
 
 @wbrb.handle()

@@ -3,7 +3,11 @@ import httpx
 import json
 
 
-twqh = on_command('土味情话')
+twqh = on_command(
+    '土味情话',
+    block=True,
+    priority=11
+)
 
 
 @twqh.handle()

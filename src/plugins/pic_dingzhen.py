@@ -3,7 +3,11 @@ from nonebot.adapters.onebot.v11 import MessageSegment
 import httpx
 
 
-dingzhen = on_command('丁真')
+dingzhen = on_command(
+    '丁真',
+    block=True,
+    priority=11
+)
 
 
 @dingzhen.handle()

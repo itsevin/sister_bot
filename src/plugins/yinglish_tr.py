@@ -7,7 +7,7 @@ from nonebot.matcher import Matcher
 from nonebot.params import CommandArg
 
 
-@on_command("淫语").handle()
+@on_command("淫语", block=True, priority=11).handle()
 async def _(matcher: Matcher, arg: Message = CommandArg()):
     if arg := arg.extract_plain_text().strip():
         lvl = 0.5

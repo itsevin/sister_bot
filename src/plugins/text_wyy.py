@@ -2,7 +2,11 @@ from nonebot import on_command
 import httpx
 
 
-wyyrp = on_command('网易云热评')
+wyyrp = on_command(
+    '网易云热评',
+    block=True,
+    priority=11
+)
 
 
 @wyyrp.handle()

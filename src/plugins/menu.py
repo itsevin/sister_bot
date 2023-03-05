@@ -2,48 +2,182 @@ from nonebot import on_command
 from nonebot.adapters.onebot.v11 import Event
 import random
 
+block=True,
+priority=12,
 
-cd = on_command('菜单')
-bqbxt = on_command('表情包系统')
-ylxt = on_command('娱乐系统')
-tpxt = on_command('图片系统')
-spxt = on_command('视频系统')
-gjxt = on_command('工具系统')
-yxxt = on_command('游戏系统')
-yyxt = on_command('音乐系统')
-qgxt = on_command('群管系统')
-zzjs = on_command('作者介绍')
-bqsm = on_command('版权声明')
-bqbhc = on_command('表情包合成')
-hwlt = on_command('和我聊天')
-chatgpt = on_command("chatgpt")
-xzys = on_command('星座运势')
-zyhy = on_command('中英互译')
-tqcx = on_command('天气查询')
-qndxxxt = on_command('青年大学习系统')
-mcfztcx = on_command('mc服状态查询')
-zzgj = on_command('站长工具')
-xxch = on_command('消息撤回')
-dmyx = on_command('代码运行')
-yyzh = on_command('淫语转换')
-rsck = on_command('人生重开系统')
-slxt = on_command('扫雷系统')
-tlpxt = on_command('塔罗牌系统')
-cdcxt = on_command('猜单词系统')
-ccyxt = on_command('猜成语系统')
-gjqlxt = on_command('国际棋类系统')
-xqxt = on_command('象棋系统')
-mgxt = on_command('迷宫系统')
-ysl = on_command('运势类')
-wbl = on_command('文本类')
-xwrbl = on_command('新闻热榜类')
-jhl = on_command('交互类')
-dg = on_command('点歌')
+
+cd = on_command(
+    '菜单',
+    block=True,
+    priority=10
+)
+bqbxt = on_command(
+    '表情包系统',
+    block=True,
+    priority=10
+)
+ylxt = on_command(
+    '娱乐系统',
+    block=True,
+    priority=10
+)
+tpxt = on_command(
+    '图片系统',
+    block=True,
+    priority=10
+)
+spxt = on_command(
+    '视频系统',
+    block=True,
+    priority=10
+)
+gjxt = on_command(
+    '工具系统',
+    block=True,
+    priority=10
+)
+yxxt = on_command(
+    '游戏系统',
+    block=True,
+    priority=10
+)
+yyxt = on_command(
+    '音乐系统',
+    block=True,
+    priority=10
+)
+zzjs = on_command(
+    '作者介绍',
+    block=True,
+    priority=10
+)
+bqsm = on_command(
+    '版权声明',
+    block=True,
+    priority=10
+)
+bqbhc = on_command(
+    '表情包合成',
+    block=True,
+    priority=10
+)
+chatgpt = on_command(
+    "gpt聊天")
+xzys = on_command(
+    '星座运势',
+    block=True,
+    priority=10
+)
+zyhy = on_command(
+    '中英互译',
+    block=True,
+    priority=10
+)
+tqcx = on_command(
+    '天气查询',
+    block=True,
+    priority=10
+)
+qndxxxt = on_command(
+    '青年大学习系统',
+    block=True,
+    priority=10
+)
+mcfztcx = on_command(
+    'mc服状态查询',
+    block=True,
+    priority=10
+)
+zzgj = on_command(
+    '站长工具',
+    block=True,
+    priority=10
+)
+xxch = on_command(
+    '消息撤回',
+    block=True,
+    priority=10
+)
+dmyx = on_command(
+    '代码运行',
+    block=True,
+    priority=10
+)
+yyzh = on_command(
+    '淫语转换',
+    block=True,
+    priority=10
+)
+rsck = on_command(
+    '人生重开系统',
+    block=True,
+    priority=10
+)
+slxt = on_command(
+    '扫雷系统',
+    block=True,
+    priority=10
+)
+tlpxt = on_command(
+    '塔罗牌系统',
+    block=True,
+    priority=10
+)
+cdcxt = on_command(
+    '猜单词系统',
+    block=True,
+    priority=10
+)
+ccyxt = on_command(
+    '猜成语系统',
+    block=True,
+    priority=10
+)
+gjqlxt = on_command(
+    '国际棋类系统',
+    block=True,
+    priority=10
+)
+xqxt = on_command(
+    '象棋系统',
+    block=True,
+    priority=10
+)
+mgxt = on_command(
+    '迷宫系统',
+    block=True,
+    priority=10
+)
+ysl = on_command(
+    '运势类',
+    block=True,
+    priority=10
+)
+wbl = on_command(
+    '文本类',
+    block=True,
+    priority=10
+)
+xwrbl = on_command(
+    '新闻热榜类',
+    block=True,
+    priority=10
+)
+jhl = on_command(
+    '交互类',
+    block=True,
+    priority=10
+)
+dg = on_command(
+    '点歌',
+    block=True,
+    priority=10
+)
 
 
 @cd.handle()  # 菜单响应体
 async def main():
-    data = "—☃—不正经的妹妹—☃—\n♚♚♚表情包系统♚♚♚\n♚音乐系统♚游戏系统♚\n♚视频系统♚图片系统♚\n♚娱乐系统♚工具系统♚\n♚群管系统♚作者介绍♚\n♚版权声明♚敬请期待♚\n————————————\n❤  不正经的妹妹  ❤\n防封编码："
+    data = "—☃—不正经的妹妹—☃—\n♚♚♚表情包系统♚♚♚\n♚音乐系统♚游戏系统♚\n♚视频系统♚图片系统♚\n♚娱乐系统♚工具系统♚\n♚版权声明♚作者介绍♚\n————————————\n❤  不正经的妹妹  ❤\n防封编码："
     data += str(random.randint(10000, 99999))
     await cd.finish(data)
 
@@ -78,7 +212,7 @@ async def main():
 
 @jhl.handle()  # 交互类响应体
 async def main():
-    data = "交互类：\n1、和我聊天\n2、语音聊天\n3.chatgpt\n防封编码："
+    data = "交互类：\n1、gpt聊天\n2、语音聊天\n防封编码："
     data += str(random.randint(10000, 99999))
     await jhl.finish(data)
 
@@ -125,13 +259,6 @@ async def main():
     await bqbxt.finish(data)
 
 
-@qgxt.handle()  # 群管系统响应体
-async def main():
-    data = "#全体禁言\n1.开启全禁\n2.关闭全禁\n#单人禁言\n1.禁@某人 禁言时间（单位：分钟）\n2.解@某人\n#移出群聊\n1.踢@某人\n#入群申请\n1.同意申请\n2.拒绝申请\n防封编码："
-    data += str(random.randint(10000, 99999))
-    await qgxt.finish(data)
-
-
 @zzjs.handle()  # 作者介绍响应体
 async def main():
     data = "机器人作者：ITSevin\n作者QQ：2720269770\n作者主页：home.sevin.cn\n防封编码："
@@ -153,16 +280,9 @@ async def main():
     await bqbhc.finish(data)
 
 
-@hwlt.handle()  # 和我聊天响应体
-async def main():
-    data = "输入“*”加你要和我聊的内容\n防封编码："
-    data += str(random.randint(10000, 99999))
-    await hwlt.finish(data)
-
-
 @chatgpt.handle()  # chatgpt响应体
 async def main():
-    data = "输入“#”加你要和OpenAI ChatGpt发送的消息\n防封编码："
+    data = "发送“@机器人+消息”进行聊天\n发送“人格”可进行人格设定\nPS:聊天功能由ChatGpt3.5提供\n防封编码："
     data += str(random.randint(10000, 99999))
     await chatgpt.finish(data)
 
@@ -218,7 +338,7 @@ async def main():
 
 @dmyx.handle()  # 代码运行响应体
 async def main():
-    data = "指令如下\ncode [语言] [-i] [inputText]\n-i：可选输入 后跟输入内容\n运行代码示例(python)(无输入)\n    code py        \nprint('你好')\n运行代码示例(python)(有输入)：\n    code py -i 你好\n        print(input())\n防封编码："
+    data = "指令如下\ncode [语言] [-i] [inputText]\n-i：可选输入 后跟输入内容\n运行代码示例(python)(无输入)\n    code py        \nprint('你好'),\n运行代码示例(python)(有输入)：\n    code py -i 你好\n        print(input())\n防封编码："
     data += str(random.randint(10000, 99999))
     await dmyx.finish(data)
 

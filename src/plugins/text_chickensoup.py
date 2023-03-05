@@ -2,7 +2,11 @@ from nonebot import on_command
 import httpx
 
 
-djt = on_command('毒鸡汤')
+djt = on_command(
+    '毒鸡汤',
+    block=True,
+    priority=11
+)
 
 
 @djt.handle()

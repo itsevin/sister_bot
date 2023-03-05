@@ -3,7 +3,11 @@ from nonebot.adapters.onebot.v11 import MessageSegment
 import httpx
 
 
-guidao = on_command('鬼刀')
+guidao = on_command(
+    '鬼刀',
+    block=True,
+    priority=11
+)
 
 
 @guidao.handle()

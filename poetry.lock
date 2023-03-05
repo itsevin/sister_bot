@@ -1614,30 +1614,6 @@ url = "https://mirrors.aliyun.com/pypi/simple"
 reference = "ali"
 
 [[package]]
-name = "nonebot-plugin-chatgpt"
-version = "0.7.4"
-description = "NoneBot2 plugin for AI chat"
-category = "main"
-optional = false
-python-versions = ">=3.8"
-files = [
-    {file = "nonebot-plugin-chatgpt-0.7.4.tar.gz", hash = "sha256:b7d077507ec00e6ad2856b6925fa22c6276e4abf83d853470699e1941f73db9f"},
-    {file = "nonebot_plugin_chatgpt-0.7.4-py3-none-any.whl", hash = "sha256:b4d838f31d445b1d904657a25fd15a95f092bb6776454e48553c298f930ebf3d"},
-]
-
-[package.dependencies]
-nonebot-adapter-onebot = ">=2.1.5"
-nonebot-plugin-apscheduler = ">=0.2.0"
-nonebot-plugin-htmlrender = ">=0.2.0.1"
-nonebot2 = ">=2.0.0rc2"
-OpenAIAuth = ">=0.0.3.1"
-
-[package.source]
-type = "legacy"
-url = "https://mirrors.aliyun.com/pypi/simple"
-reference = "ali"
-
-[[package]]
 name = "nonebot-plugin-code"
 version = "0.0.4"
 description = "nonebot2 plugin run code online"
@@ -2227,26 +2203,6 @@ url = "https://mirrors.aliyun.com/pypi/simple"
 reference = "ali"
 
 [[package]]
-name = "openaiauth"
-version = "0.2.0"
-description = "OpenAI Authentication Reverse Engineered"
-category = "main"
-optional = false
-python-versions = "*"
-files = [
-    {file = "OpenAIAuth-0.2.0-py3-none-any.whl", hash = "sha256:110da9c4daec0af3749889dd09ca9871dd0659c730229d8be723a55f73c0346c"},
-    {file = "OpenAIAuth-0.2.0.tar.gz", hash = "sha256:be82728114da370beba26011d628a7c2afb5d47d7932772ac8a327ae2c5b6a79"},
-]
-
-[package.dependencies]
-tls-client = "*"
-
-[package.source]
-type = "legacy"
-url = "https://mirrors.aliyun.com/pypi/simple"
-reference = "ali"
-
-[[package]]
 name = "opencv-python-headless"
 version = "4.7.0.68"
 description = "Wrapper package for OpenCV python bindings."
@@ -2327,6 +2283,20 @@ category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
+    {file = "Pillow-9.4.0-1-cp310-cp310-macosx_10_10_x86_64.whl", hash = "sha256:1b4b4e9dda4f4e4c4e6896f93e84a8f0bcca3b059de9ddf67dac3c334b1195e1"},
+    {file = "Pillow-9.4.0-1-cp311-cp311-macosx_10_10_x86_64.whl", hash = "sha256:fb5c1ad6bad98c57482236a21bf985ab0ef42bd51f7ad4e4538e89a997624e12"},
+    {file = "Pillow-9.4.0-1-cp37-cp37m-macosx_10_10_x86_64.whl", hash = "sha256:f0caf4a5dcf610d96c3bd32932bfac8aee61c96e60481c2a0ea58da435e25acd"},
+    {file = "Pillow-9.4.0-1-cp38-cp38-macosx_10_10_x86_64.whl", hash = "sha256:3f4cc516e0b264c8d4ccd6b6cbc69a07c6d582d8337df79be1e15a5056b258c9"},
+    {file = "Pillow-9.4.0-1-cp39-cp39-macosx_10_10_x86_64.whl", hash = "sha256:b8c2f6eb0df979ee99433d8b3f6d193d9590f735cf12274c108bd954e30ca858"},
+    {file = "Pillow-9.4.0-1-pp38-pypy38_pp73-macosx_10_10_x86_64.whl", hash = "sha256:b70756ec9417c34e097f987b4d8c510975216ad26ba6e57ccb53bc758f490dab"},
+    {file = "Pillow-9.4.0-1-pp39-pypy39_pp73-macosx_10_10_x86_64.whl", hash = "sha256:43521ce2c4b865d385e78579a082b6ad1166ebed2b1a2293c3be1d68dd7ca3b9"},
+    {file = "Pillow-9.4.0-2-cp310-cp310-macosx_10_10_x86_64.whl", hash = "sha256:9d9a62576b68cd90f7075876f4e8444487db5eeea0e4df3ba298ee38a8d067b0"},
+    {file = "Pillow-9.4.0-2-cp311-cp311-macosx_10_10_x86_64.whl", hash = "sha256:87708d78a14d56a990fbf4f9cb350b7d89ee8988705e58e39bdf4d82c149210f"},
+    {file = "Pillow-9.4.0-2-cp37-cp37m-macosx_10_10_x86_64.whl", hash = "sha256:8a2b5874d17e72dfb80d917213abd55d7e1ed2479f38f001f264f7ce7bae757c"},
+    {file = "Pillow-9.4.0-2-cp38-cp38-macosx_10_10_x86_64.whl", hash = "sha256:83125753a60cfc8c412de5896d10a0a405e0bd88d0470ad82e0869ddf0cb3848"},
+    {file = "Pillow-9.4.0-2-cp39-cp39-macosx_10_10_x86_64.whl", hash = "sha256:9e5f94742033898bfe84c93c831a6f552bb629448d4072dd312306bab3bd96f1"},
+    {file = "Pillow-9.4.0-2-pp38-pypy38_pp73-macosx_10_10_x86_64.whl", hash = "sha256:013016af6b3a12a2f40b704677f8b51f72cb007dac785a9933d5c86a72a7fe33"},
+    {file = "Pillow-9.4.0-2-pp39-pypy39_pp73-macosx_10_10_x86_64.whl", hash = "sha256:99d92d148dd03fd19d16175b6d355cc1b01faf80dae93c6c3eb4163709edc0a9"},
     {file = "Pillow-9.4.0-cp310-cp310-macosx_10_10_x86_64.whl", hash = "sha256:2968c58feca624bb6c8502f9564dd187d0e1389964898f5e9e1fbc8533169157"},
     {file = "Pillow-9.4.0-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:c5c1362c14aee73f50143d74389b2c158707b4abce2cb055b7ad37ce60738d47"},
     {file = "Pillow-9.4.0-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:bd752c5ff1b4a870b7661234694f24b1d2b9076b8bf337321a814c612665f343"},
@@ -3041,23 +3011,6 @@ url = "https://mirrors.aliyun.com/pypi/simple"
 reference = "ali"
 
 [[package]]
-name = "tls-client"
-version = "0.1.8"
-description = "Advanced Python HTTP Client."
-category = "main"
-optional = false
-python-versions = "*"
-files = [
-    {file = "tls_client-0.1.8-py3-none-any.whl", hash = "sha256:3c0022997b2ca4e9d7907ac2a2265dae65961f497cc69702784a15f736178311"},
-    {file = "tls_client-0.1.8.tar.gz", hash = "sha256:38b2ead2a04dd0c88ac9ce9a47dd72f48a4b03d9180804c389cba887e91494ef"},
-]
-
-[package.source]
-type = "legacy"
-url = "https://mirrors.aliyun.com/pypi/simple"
-reference = "ali"
-
-[[package]]
 name = "tomlkit"
 version = "0.11.6"
 description = "Style preserving TOML library"
@@ -3513,4 +3466,4 @@ reference = "ali"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "442c892994251f20bef680f2c8e947eb8ea12ddc41db04b1fa63fbd0ae626702"
+content-hash = "a7bec3f47da61f6786ebc5356df32dadd4d2c9701db3c95453b651ce01f8c78e"

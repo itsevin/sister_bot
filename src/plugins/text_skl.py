@@ -2,7 +2,11 @@ from nonebot import on_command
 import httpx
 
 
-skl = on_command('顺口溜')
+skl = on_command(
+    '顺口溜',
+    block=True,
+    priority=11
+)
 
 
 @skl.handle()

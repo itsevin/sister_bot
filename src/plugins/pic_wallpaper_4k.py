@@ -4,7 +4,11 @@ import httpx
 import re
 
 
-wallpaper = on_command('4k壁纸')
+wallpaper = on_command(
+    '4k壁纸',
+    block=True,
+    priority=11
+)
 
 
 @wallpaper.handle()

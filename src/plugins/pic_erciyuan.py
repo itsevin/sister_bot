@@ -3,7 +3,11 @@ from nonebot.adapters.onebot.v11 import MessageSegment
 import httpx
 
 
-ecyt = on_command('二次元图')
+ecyt = on_command(
+    '二次元图',
+    block=True,
+    priority=11
+)
 
 
 @ecyt.handle()

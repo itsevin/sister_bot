@@ -4,7 +4,11 @@ import httpx
 import json
 
 
-sjbz = on_command('随机壁纸')
+sjbz = on_command(
+    '随机壁纸',
+    block=True,
+    priority=11
+)
 
 
 @sjbz.handle()

@@ -7,7 +7,11 @@ import httpx
 import json
 
 
-zhrb = on_command('知乎热榜')
+zhrb = on_command(
+    '知乎热榜',
+    block=True,
+    priority=11
+)
 
 
 @zhrb.handle()

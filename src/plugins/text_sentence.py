@@ -2,7 +2,11 @@ from nonebot import on_command
 import httpx
 
 
-sjyy = on_command('随机一言')
+sjyy = on_command(
+    '随机一言',
+    block=True,
+    priority=11
+)
 
 
 @sjyy.handle()

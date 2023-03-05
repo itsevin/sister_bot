@@ -3,7 +3,11 @@ from nonebot.adapters.onebot.v11 import Event
 import httpx
 
 
-xz = on_command('星座')
+xz = on_command(
+    '星座',
+    block=True,
+    priority=11
+)
 
 
 @xz.handle()

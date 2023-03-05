@@ -4,7 +4,11 @@ import httpx
 import json
 
 
-qqgj = on_command('qq估价')
+qqgj = on_command(
+    'qq估价',
+    block=True,
+    priority=11
+)
 
 
 @qqgj.handle()

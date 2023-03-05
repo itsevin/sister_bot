@@ -3,7 +3,11 @@ from nonebot.adapters.onebot.v11 import MessageSegment
 import httpx
 
 
-lm = on_command('灵梦')
+lm = on_command(
+    '灵梦',
+    block=True,
+    priority=11
+)
 
 
 @lm.handle()
