@@ -180,14 +180,14 @@ async def main():
 
 @ylxt.handle()  # 娱乐系统响应体
 async def main():
-    data = "娱乐系统:\n1、运势类\n2、文本类\n3、新闻热榜类\n4、交互类\n防封编码："
+    data = "娱乐系统:\n1.运势类\n2.文本类\n3.新闻热榜类\n4.交互类\n防封编码："
     data += str(random.randint(10000, 99999))
     await ylxt.finish(data)
 
 
 @ysl.handle()  # 运势类响应体
 async def main():
-    data = "运势类：\n1、今日运势\n2、星座运势\n防封编码："
+    data = "运势类：\n1.今日运势\n2.星座运势\n防封编码："
     data += str(random.randint(10000, 99999))
     await ysl.finish(data)
 
@@ -201,14 +201,14 @@ async def main():
 
 @xwrbl.handle()  # 新闻热榜类响应体
 async def main():
-    data = "新闻热榜类：\n1、知乎热榜\n2、b站热榜\n3、抖音热榜\n4、微博热榜\n5、百度热榜\n防封编码："
+    data = "新闻热榜类：\n1.知乎热榜\n2.b站热榜\n3.抖音热榜\n4.微博热榜\n5.百度热榜\n防封编码："
     data += str(random.randint(10000, 99999))
     await xwrbl.finish(data)
 
 
 @jhl.handle()  # 交互类响应体
 async def main():
-    data = "交互类：\n1、gpt聊天\n2、语音聊天\n防封编码："
+    data = "交互类：\n1.gpt聊天\n2.bing聊天\n3.语音聊天\n防封编码："
     data += str(random.randint(10000, 99999))
     await jhl.finish(data)
 
