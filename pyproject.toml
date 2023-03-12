@@ -16,7 +16,7 @@ default = true
 url = "https://mirrors.aliyun.com/pypi/simple/"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.10"
 nonebot2 = "^2.0.0rc2"
 httpx = "^0.23.0"
 nonebot-plugin-apscheduler = "^0.2.0"
@@ -47,12 +47,13 @@ yinglish = "^1.0.1"
 config = "^0.5.1"
 aiohttp = "^3.8.3"
 nonebot-plugin-manager = "^0.5.14"
+nonebot-plugin-bing-chat = "^0.5.1"
 
 [tool.nonebot]
 adapters = [
     { name = "OneBot V11", module_name = "nonebot.adapters.onebot.v11" }
 ]
-plugins = ["nonebot_plugin_apscheduler", "nonebot_plugin_htmlrender", "nonebot_plugin_imageutils", "nonebot_plugin_handle", "nonebot_plugin_memes", "nonebot_plugin_minesweeper", "nonebot_plugin_petpet", "nonebot_plugin_read_60s", "nonebot_plugin_remake", "nonebot_plugin_savor", "nonebot_plugin_simplemusic", "nonebot_plugin_tarot", "nonebot_plugin_today_in_history", "nonebot_plugin_wordle", "nonebot_plugin_record", "nonebot_plugin_boardgame", "nonebot_plugin_cchess", "nonebot_plugin_maze", "nonebot_plugin_youthstudy", "nonebot_plugin_withdraw", "nonebot_plugin_code", "nonebot_plugin_heweather", "nonebot_plugin_manager", "nonebot_plugin_naturel_gpt"]
+plugins = ["nonebot_plugin_apscheduler", "nonebot_plugin_htmlrender", "nonebot_plugin_imageutils", "nonebot_plugin_handle", "nonebot_plugin_memes", "nonebot_plugin_minesweeper", "nonebot_plugin_petpet", "nonebot_plugin_read_60s", "nonebot_plugin_remake", "nonebot_plugin_savor", "nonebot_plugin_simplemusic", "nonebot_plugin_tarot", "nonebot_plugin_today_in_history", "nonebot_plugin_wordle", "nonebot_plugin_record", "nonebot_plugin_boardgame", "nonebot_plugin_cchess", "nonebot_plugin_maze", "nonebot_plugin_youthstudy", "nonebot_plugin_withdraw", "nonebot_plugin_code", "nonebot_plugin_heweather", "nonebot_plugin_manager", "nonebot_plugin_naturel_gpt", "nonebot_plugin_bing_chat"]
 plugin_dirs = ["src/plugins"]
 builtin_plugins = []
 
