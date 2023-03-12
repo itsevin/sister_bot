@@ -2,10 +2,6 @@ from nonebot import on_command
 from nonebot.adapters.onebot.v11 import Event
 import random
 
-block=True,
-priority=12,
-
-
 cd = on_command(
     '菜单',
     block=True,

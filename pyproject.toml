@@ -47,7 +47,7 @@ yinglish = "^1.0.1"
 config = "^0.5.1"
 aiohttp = "^3.8.3"
 nonebot-plugin-manager = "^0.5.14"
-nonebot-plugin-bing-chat = "^0.5.1"
+nonebot-plugin-bing-chat = "^0.5.4"
 
 [tool.nonebot]
 adapters = [
