@@ -67,12 +67,10 @@ Welcome To [妹妹体验交流群](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=uj1
 ## 特别感谢
 
 - [Nonebot2](https://github.com/nonebot/nonebot2)：本机器人使用的开发框架
-
 - [go-cqhttp](https://github.com/Mrs4s/go-cqhttp)：提供稳定的机器人的接口
-
 - 用到的来自[Nonebot2商店](https://v2.nonebot.dev/store)的其他插件的作者（具体见文档）
-
 - [@萌新源](https://github.com/mengxinyuan638)：提供了很多机器人前身插件
+- [绪山真寻Bot](https://github.com/HibiKier/zhenxun_bot)：给作者提供了灵感，并参考了该bot的源码
 
 ## 贡献
 
