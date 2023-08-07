@@ -27,7 +27,6 @@ nonebot-plugin-handle = "^0.1.6"
 nonebot-plugin-memes = "^0.3.9"
 nonebot-plugin-minesweeper = "^0.1.8"
 nonebot-plugin-remake = "^0.2.7"
-nonebot-plugin-savor = "^0.2.1"
 nonebot-plugin-simplemusic = "^0.1.5"
 nonebot-plugin-tarot = "0.4.0.post4"
 nonebot-plugin-wordle = "^0.1.11"
@@ -54,7 +53,7 @@ poetry = "^1.5.1"
 adapters = [
     { name = "OneBot V11", module_name = "nonebot.adapters.onebot.v11" }
 ]
-plugins = ["nonebot_plugin_apscheduler", "nonebot_plugin_htmlrender", "nonebot_plugin_imageutils", "nonebot_plugin_handle", "nonebot_plugin_memes", "nonebot_plugin_minesweeper", "nonebot_plugin_read_60s", "nonebot_plugin_remake", "nonebot_plugin_savor", "nonebot_plugin_simplemusic", "nonebot_plugin_tarot", "nonebot_plugin_today_in_history", "nonebot_plugin_wordle", "nonebot_plugin_record", "nonebot_plugin_boardgame",  "nonebot_plugin_maze", "nonebot_plugin_withdraw", "nonebot_plugin_code", "nonebot_plugin_heweather", "nonebot_plugin_naturel_gpt", "nonebot_plugin_bing_chat"]
+plugins = ["nonebot_plugin_apscheduler", "nonebot_plugin_htmlrender", "nonebot_plugin_imageutils", "nonebot_plugin_handle", "nonebot_plugin_memes", "nonebot_plugin_minesweeper", "nonebot_plugin_read_60s", "nonebot_plugin_remake", "nonebot_plugin_simplemusic", "nonebot_plugin_tarot", "nonebot_plugin_today_in_history", "nonebot_plugin_wordle", "nonebot_plugin_record", "nonebot_plugin_boardgame",  "nonebot_plugin_maze", "nonebot_plugin_withdraw", "nonebot_plugin_code", "nonebot_plugin_heweather", "nonebot_plugin_naturel_gpt", "nonebot_plugin_bing_chat"]
 plugin_dirs = ["plugins/basic_plugins", "plugins/plugins", "plugins/extra_plugins"]
 builtin_plugins = []
 
