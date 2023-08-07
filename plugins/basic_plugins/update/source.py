@@ -112,7 +112,7 @@ async def check_update(bot: Bot) -> Tuple[int, str]:
                 if _version == releases["name"]:
                     version_match = True
                     break
-                if not releases["prerelease"] and Config.get_value("releases", "releases") != "dev":
+                if not releases["prerelease"] or Config.get_value("releases", "releases") == "dev":
                     releases_version = releases["name"]
                     tar_gz_url = releases["tarball_url"]
                     update_info = releases["body"]
