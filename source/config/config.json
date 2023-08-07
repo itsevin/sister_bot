@@ -20,5 +20,13 @@
             "type": "str",
             "help": "代理地址"
         }
+    },
+    "RELEASES":{
+        "RELEASES": {
+            "value": "stable",
+            "default_value": "stable",
+            "type": "str",
+            "help": "使用的机器人版本"
+        }
     }
 }

@@ -112,10 +112,11 @@ async def check_update(bot: Bot) -> Tuple[int, str]:
                 if _version == releases["name"]:
                     version_match = True
                     break
-                releases_version = releases["name"]
-                tar_gz_url = releases["tarball_url"]
-                update_info = releases["body"]
-                time = releases['created_at']
+                if not releases["prerelease"] and Config.get_value("releases", "releases") != "dev":
+                    releases_version = releases["name"]
+                    tar_gz_url = releases["tarball_url"]
+                    update_info = releases["body"]
+                    time = releases['created_at']
             if version_match != True:
                 raise NoVersionMatch(f"找不到与远程仓库版本相匹配的机器人版本信息文件中的版本，无法检测更新，版本信息文件应该位于{_version_file}")
             logger.info(f"检测到机器人需要更新，当前版本：{_version}，下一版本：{releases_version}，最新版本：{latest_version}")
