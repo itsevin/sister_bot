@@ -50,17 +50,17 @@ async def remind(bot: Bot):
         if not restart.exists():
             port = str(bot.config.port)
             script = f'''
-            @echo off
-            set PORT={port}
+@echo off
+set PORT={port}
 
-            for /f "tokens=5" %%a in ('netstat -ano ^| findstr ":%PORT%"') do (
-                taskkill /PID %%a /F
-                goto :RunPoetry
-            )
+for /f "tokens=5" %%a in ('netstat -ano ^| findstr ":%PORT%"') do (
+taskkill /PID %%a /F
+goto :RunPoetry
+)
 
-            :RunPoetry
-            call poetry run nb run
-            '''
+:RunPoetry
+call poetry run nb run
+'''
             with open(restart, "w", encoding="utf-8") as f:
                 f.write(script)
             logger.info("已自动生成 restart.bat(重启) 文件，请检查脚本是否与本地指令符合")
@@ -69,12 +69,12 @@ async def remind(bot: Bot):
         if not restart.exists():
             port = str(bot.config.port)
             script = f'''
-            pid=$(netstat -tunlp | grep {port} | awk '{{print $7}}')
-            pid=${{pid%/*}}
-            kill -9 $pid
-            sleep 3
-            poetry run nb run
-            '''
+pid=$(netstat -tunlp | grep {port} | awk '{{print $7}}')
+pid=${{pid%/*}}
+kill -9 $pid
+sleep 3
+poetry run nb run
+'''
             with open(restart, "w", encoding="utf-8") as f:
                 f.write(script)
             os.system("chmod +x ./restart.sh")

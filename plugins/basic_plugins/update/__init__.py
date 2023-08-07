@@ -121,4 +121,4 @@ async def bot_restart(event=None):
     if str(platform.system()).lower() == "windows":
         subprocess.run(["restart.bat"], cwd=Path())
     else:
-        subprocess.run(["./restart.sh"], cwd=Path())
+        subprocess.run(["sudo", "./restart.sh"], cwd=Path())
