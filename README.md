@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://nonebot.dev/"><img src="http://img.sevin.cn/i/2023/01/16/63c5399a2f186.png" width="200" height="200" alt="不正经的妹妹"></a>
+  <a href="https://nonebot.dev/"><img src="https://raw.githubusercontent.com/itsevin/sister_bot/main/logo.png" width="200" height="200" alt="不正经的妹妹"></a>
 </p>
 
 <div align="center">
