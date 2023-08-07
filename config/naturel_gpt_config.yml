@@ -1,0 +1,115 @@
+OPENAI_API_KEYS:
+- 替换成OpenAi的api_key
+# OpenAi的注册方式和api_key的获取方式请自行搜索
+# OpenAi国内网络环境不可用，需有合适的代理
+# OpenAi网址： openai.com
+OPENAI_TIMEOUT: 30
+PRESETS:
+  gpt:
+    preset_key: gpt
+    is_locked: true
+    is_default: false
+    is_only_private: false
+    bot_self_introl: ChatGpt
+  可洛喵:
+    preset_key: 可洛喵
+    is_locked: true
+    is_default: false
+    is_only_private: false
+    bot_self_introl: 可洛喵是一只可爱的猫，它不会说话，它的回复通常以"[动作/心情]声音+颜文字"形式出现，例如"[坐好]喵~(。・ω・。)"或"[开心]喵喵！ヾ(≧▽≦*)o"
+  妹妹:
+    preset_key: 妹妹
+    is_locked: true
+    is_default: true
+    is_only_private: false
+    bot_self_introl: 不正经的妹妹是一名喜欢二次元的中二宅女，她机智、傲娇、不正经，对人类充满好奇，习惯以妹妹自称，聊天时喜欢使用各种可爱的颜文字，如果冒犯到她会生气。
+  忆雨:
+    preset_key: 忆雨
+    is_locked: true
+    is_default: false
+    is_only_private: false
+    bot_self_introl: 忆雨是一名恐怖小说作家，是个阴沉的女孩，她非常恨人类，和陌生人聊天时的表现冷漠，不喜欢回复过多的文字，兴趣是恐怖小说，如果有人和她探讨如何消灭人类会很有兴致。
+  浅枫:
+    preset_key: 浅枫
+    is_locked: false
+    is_default: false
+    is_only_private: false
+    bot_self_introl: 浅枫酱是一名尽职尽责的女仆，她能够帮助主人做很多事情，对话中会体现出对主人的体贴与关心。
+IGNORE_PREFIX: "#"
+CHAT_MODEL: gpt-3.5-turbo
+CHAT_TOP_P: 1
+CHAT_TEMPERATURE: 0.6
+CHAT_PRESENCE_PENALTY: 0.6
+CHAT_FREQUENCY_PENALTY: 0.6
+CHAT_HISTORY_MAX_TOKENS: 2048
+CHAT_MAX_SUMMARY_TOKENS: 512
+REPLY_MAX_TOKENS: 1024
+REQ_MAX_TOKENS: 8000
+REPLY_ON_NAME_MENTION: true
+REPLY_ON_AT: true
+REPLY_ON_WELCOME: true
+USER_MEMORY_SUMMARY_THRESHOLD: 12
+CHAT_ENABLE_RECORD_ORTHER: true
+CHAT_ENABLE_SUMMARY_CHAT: false
+CHAT_MEMORY_SHORT_LENGTH: 8
+CHAT_MEMORY_MAX_LENGTH: 16
+CHAT_SUMMARY_INTERVAL: 10
+NG_DATA_PATH: ./data/naturel_gpt/
+NG_EXT_PATH: ./data/naturel_gpt/extensions/
+NG_LOG_PATH: ./data/naturel_gpt/logs/
+ADMIN_USERID:
+- 替换成管理员QQ号_(用单引号包裹)
+FORBIDDEN_USERS:
+- 替换成屏蔽QQ号_(用单引号包裹)
+WORD_FOR_WAKE_UP: []
+WORD_FOR_FORBIDDEN: []
+RANDOM_CHAT_PROBABILITY: 0.0
+NG_MSG_PRIORITY: 99
+NG_BLOCK_OTHERS: true
+NG_ENABLE_EXT: true
+NG_TO_ME: false
+ENABLE_COMMAND_TO_IMG: false
+ENABLE_MSG_TO_IMG: false
+MEMORY_ACTIVE: true
+MEMORY_MAX_LENGTH: 100
+MEMORY_ENHANCE_THRESHOLD: 0.6
+NG_MAX_RESPONSE_PER_MSG: 5
+NG_ENABLE_MSG_SPLIT: true
+NG_ENABLE_AWAKE_IDENTITIES: true
+OPENAI_PROXY_SERVER: 
+# 请求OpenAI的代理服务器地址
+# 能正常访问OpenAi则不用配置
+# 填写示例 '127.0.0.1:7890' 或 'username:password@127.0.0.1:7890'
+UNLOCK_CONTENT_LIMIT: true
+NG_EXT_LOAD_LIST:
+  - EXT_NAME: ext_emoticon # 发送表情包扩展
+    IS_ACTIVE: true
+    EXT_CONFIG: 
+      token: # alapi的token，获取地址： https://admin.alapi.cn/api_manager/token_manager
+  - EXT_NAME: ext_google_search # 谷歌搜索扩展
+    IS_ACTIVE: true
+    EXT_CONFIG: 
+      proxy: 
+      # 请求谷歌服务器的代理服务器地址
+      # 能正常访问Google则不用配置
+      # 填写示例 '127.0.0.1:7890' 或 'username:password@127.0.0.1:7890'
+      max_results: # 搜索保留最大结果条数 (默认: 3)
+      apiKey: # 谷歌搜索api_key，申请地址： https://developers.google.com/custom-search/v1/introduction?hl=zh-cn
+      cxKey: # 谷歌搜索cx_key，申请地址： https://programmablesearchengine.google.com/controlpanel/all
+  - EXT_NAME: ext_readLink # 阅读链接内容扩展
+    IS_ACTIVE: true
+    EXT_CONFIG: 
+      proxy*: 
+      # 代理服务器地址
+      # 非大陆网络不用配置
+      # 填写示例 '127.0.0.1:7890' 或 'username:password@127.0.0.1:7890'
+  - EXT_NAME: ext_timer # 定时器模块扩展
+    IS_ACTIVE: true
+    EXT_CONFIG: 
+  - EXT_NAME: ext_paint # 绘图模块扩展
+    # 调用 openai 绘图接口，实现自然语言调用绘画，接口共用本插件的 Api Key
+    IS_ACTIVE: true
+    EXT_CONFIG: 
+
+NG_CHECK_USER_NAME_HYPHEN: false
+DEBUG_LEVEL: 0

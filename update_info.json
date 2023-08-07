@@ -1,0 +1,26 @@
+{
+    "file": {
+        "update_file": [
+            "plugins",
+            "poetry.lock",
+            "pyproject.toml",
+            "source/config/config.json"
+        ],
+        "add_file": [],
+        "delete_file": [],
+        "move_file": []
+    },
+    "config": {
+        "bot": {
+            "add_bot_config": [],
+            "delete_bot_config": [],
+            "move_bot_config": []
+        },
+        "nonebot": {
+            "nb_config_desc": ""
+        }
+    },
+    "desc": {
+        "update_desc": ""
+    }
+}

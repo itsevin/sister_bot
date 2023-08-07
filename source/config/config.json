@@ -1,0 +1,24 @@
+{
+    "BOT_UPDATE": {
+        "AUTO_UPDATE": {
+            "value": true,
+            "default_value": true,
+            "type": "bool",
+            "help": "自动更新"
+        },
+        "AUTO_RESTART": {
+            "value": true,
+            "default_value": true,
+            "type": "bool",
+            "help": "更新完毕自动重启"
+        }
+    },
+    "PROXY":{
+        "PROXY": {
+            "value": "",
+            "default_value": "",
+            "type": "str",
+            "help": "代理地址"
+        }
+    }
+}
