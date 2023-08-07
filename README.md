@@ -33,7 +33,7 @@
 
 一款可爱的QQ娱乐机器人-不正经的妹妹。基于[NoneBot2](https://v2.nonebot.dev/)开发。
 
-Welcome To [妹妹体验交流群](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=uj1afk31D3I86Ec1hJr-5Jy9nW3k6lZD&authKey=Dnihmo06yA%2B%2FCAdcym0nWZvqjDrUXux%2FSiuKb3HFJJjiZC%2FTJA3Ptzy12414Abgi&noverify=0&group_code=651708965)
+Welcome To [妹妹的鱼塘QQ群](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=uj1afk31D3I86Ec1hJr-5Jy9nW3k6lZD&authKey=Dnihmo06yA%2B%2FCAdcym0nWZvqjDrUXux%2FSiuKb3HFJJjiZC%2FTJA3Ptzy12414Abgi&noverify=0&group_code=651708965)
 
 ## 特色
 
@@ -43,6 +43,8 @@ Welcome To [妹妹体验交流群](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=uj1
 - 扩展性强：能够二次开发扩展，插件统一管理（后续推出 | PS:作者是高三牲，毕业就搞好）
 
 ## [文档（未完成）](https://bot.sevin.cn)
+
+> 当前文档为远古版本，新的文档这两天马上推出
 
 ## 功能列表
 
