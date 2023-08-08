@@ -7,6 +7,7 @@
 合适的主机可以是24小时开机的电脑（只要做得到）、小主机（软路由，树莓派等等）、长时间运行的旧手机（这个自己折腾，不做解释），最好是一台稳定的服务器或挂机宝
 
 > 有实惠并且稳定的服务器或挂机宝厂商可以联系我，可以在这里做推荐
+>
 > PS：要真的实惠且稳定，并且正规，不然别来
 
 系统可以是Windows或者Linux，其他系统没有主动适配，要折腾自己折腾。推荐用Linux系统（最兼容），不过新手可能更适合Windows
@@ -23,8 +24,9 @@
 
 >  注册OpenAi可以参考：https://www.evlit.com/477.html
 >
-> OpenAi充值可以参考：https://chatgpt-plus.github.io/
-> 文章中的Depay现已换成Dupay，使用方法详见：https://kerrynotes.com/depay-guide/
+>  OpenAi充值可以参考：https://chatgpt-plus.github.io/
+>
+>  文章中的Depay现已换成Dupay，使用方法详见：https://kerrynotes.com/depay-guide/
 
 ## 一定的折腾能力和耐心
 
