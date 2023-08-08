@@ -16,8 +16,6 @@ from utils.config import Config
 
 driver = get_driver()
 
-nb_config = get_driver().config
-
 release_url = "https://api.github.com/repos/itsevin/sister_bot/releases"
 
 _version_file = Path() / "__version__"
