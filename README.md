@@ -44,8 +44,6 @@ Welcome To [妹妹的鱼塘QQ群](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=uj1a
 
 ## [文档（未完成）](https://bot.sevin.cn)
 
-> 当前文档为远古版本，新的文档这两天马上推出
-
 ## 功能列表
 
 - 音乐系统：点歌、随机歌曲
