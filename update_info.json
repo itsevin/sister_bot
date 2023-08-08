@@ -17,7 +17,7 @@
             "move_bot_config": []
         },
         "nonebot": {
-            "nb_config_desc": ""
+            "nb_config_desc": "请将 env.dev 里的NICKNAME配置项的“不正经的妹妹”和“妹妹”的顺序调换，使“不正经的妹妹”在前以适配新功能"
         }
     },
     "desc": {
