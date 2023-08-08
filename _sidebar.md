@@ -7,6 +7,9 @@
   * [配置机器人](install/config)
   * [持久化运行方案](install/start)
   * [更新版本](install/update)
+* 进阶
+  * [自定义设定](advanced/custom)
+  * [自定义插件](advanced/plugins)
 * [开发](development)
 * [关于](about)
 * [鸣谢](thanks)

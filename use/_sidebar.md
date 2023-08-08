@@ -1,4 +1,3 @@
-* [介绍](desc)
 * [功能](use/)
   * [菜单](use/menu)
   * [音乐系统](use/sys_music)
@@ -22,10 +21,3 @@
   * [被动插件](use/other/)
     * [历史上的今天](use/other/today_in_history)
     * [60s读世界](use/other/60s)
-* 安装
-  * [部署](install/install)
-  * [配置](install/env)
-  * [启动](install/start)
-* [开发](development)
-* [关于](about)
-* [鸣谢](thanks)
