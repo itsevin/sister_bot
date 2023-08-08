@@ -1,7 +1,8 @@
 {
     "file": {
         "update_file": [
-            "plugins",
+            "plugins/basic_plugins",
+            "plugins/plugins",
             "poetry.lock",
             "pyproject.toml",
             "source/config/config.json"
