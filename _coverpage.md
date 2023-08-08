@@ -5,7 +5,7 @@
 
 # 不正经的妹妹
 
-> 一款功能丰富、简单易用的QQ机器人
+> 一款可爱的QQ娱乐机器人
 
-[GitHub](https://github.com/itsevin/qqbot/)
+[GitHub](https://github.com/itsevin/sister_bot/)
 [开始](/desc)
