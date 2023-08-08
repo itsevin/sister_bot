@@ -16,7 +16,7 @@
 
 1. 解压后会得到`go-cqhttp`，首次运行会让你选择通信方式，选择 `3` (反向 Websocket 通信)，会生成一个配置文件**config.yml**
 
-![](https://itsevin.github.io/sister_bot/#/install/1.png)
+![](https://raw.githubusercontent.com/itsevin/sister_bot/docs/install/1.png)
 
 2. 在**config.yml**文件中，将uin修改为bot账号，password修改为密码（留空就是扫码登录，登录方式按实际情况选择）。
 

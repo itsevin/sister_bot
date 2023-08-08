@@ -6,4 +6,4 @@
 
 更新完成后机器人需要重启才能生效，如果配置中开启了自动重启就会自动重启，否则需要私聊`重启`进行重启或者直接手动重启
 
-![](https://itsevin.github.io/sister_bot/#/install/2.jpg)
+![](https://raw.githubusercontent.com/itsevin/sister_bot/docs/install/2.jpg)
