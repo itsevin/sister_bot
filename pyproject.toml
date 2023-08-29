@@ -47,7 +47,8 @@ nonebot-plugin-bing-chat = "^0.7.2"
 nonebot-plugin-naturel-gpt = "^2.0.4"
 ujson = "^5.8.0"
 ruamel-yaml = "^0.17.32"
-poetry = "^1.5.1"
+poetry = "^1.4.0"
+nb-cli = "^1.2.2"
 
 [tool.nonebot]
 adapters = [
