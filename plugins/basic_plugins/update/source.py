@@ -45,11 +45,17 @@ class NoVersionMatch(Exception):
 @driver.on_bot_connect
 async def dep_file_handle(bot: Bot):
     dep_file = Path() / "pyproject.toml"
-    dep_source_file = Path() / "source" / "pyproject.toml"
-    dep_source_file.parent.mkdir(exist_ok=True, parents=True)
-    if not dep_source_file.exists():
-        shutil.copy2(dep_file.absolute(), dep_source_file.absolute())
+    dep_org_source_file = Path() / "source" / "dep" / "pyproject_org.toml"
+    dep_user_source_file = Path() / "source" / "dep" / "pyproject_user.toml"
+    dep_org_source_file.parent.mkdir(exist_ok=True, parents=True)
+    dep_user_source_file.parent.mkdir(exist_ok=True, parents=True)
+    if not dep_file.exists():
+        logger.error("重大错误，依赖配置文件 pyproject.toml 不存在")
+        return None
+    if not dep_org_source_file.exists():
+        shutil.copy2(dep_file.absolute(), dep_org_source_file.absolute())
         logger.warning(f"检测到机器人原始依赖文件资源 {dep_source_file} 不存在，自动从用户依赖文件 {dep_file} 生成")
+    shutil.copy2(dep_file.absolute(), dep_user_source_file.absolute())
 
 
 @driver.on_bot_connect
@@ -235,23 +241,23 @@ def _update_file(update_info, bot_new_file):
     move_file = update_info["file"]["move_file"]
 
     dep_file = Path(bot_new_file) / "pyproject.toml"
-    dep_source_file = Path() / "source" / "pyproject.toml"
-    dep_source_file.parent.mkdir(exist_ok=True, parents=True)
-    shutil.copy2(dep_file.absolute(), dep_source_file.absolute())
+    dep_org_source_file = Path() / "source" / "dep" / "pyproject_org.toml"
+    dep_org_source_file.parent.mkdir(exist_ok=True, parents=True)
+    shutil.copy2(dep_file.absolute(), dep_org_source_file.absolute())
 
     for f in delete_file + update_file:
-        file_path = Path() / f
-        backup_file_path = Path(backup_dir) / f
+        file_path = Path() / f.replace('.', r'\.')
+        backup_file_path = Path(backup_dir) / f.replace('.', r'\.')
         if file_path.exists():
             backup_file_path.parent.mkdir(parents=True, exist_ok=True)
             shutil.move(file_path.absolute(), backup_file_path.absolute())
             if f in delete_file:
                 logger.debug(f"已删除并备份文件： {f}")
     for f in add_file + update_file:
-        new_file_path = Path(bot_new_file) / f
-        old_file_path = Path() / f
+        new_file_path = Path(bot_new_file) / f.replace('.', r'\.')
+        old_file_path = Path() / f.replace('.', r'\.')
         if old_file_path.exists() and f in add_file:
-            backup_file_path = Path(backup_dir) / f
+            backup_file_path = Path(backup_dir) / f.replace('.', r'\.')
             shutil.move(old_file_path.absolute(), backup_file_path.absolute())
             logger.warning(f"文件 {f} 为更新信息中的添加文件，但是该文件已存在，已自动更新该文件为新版本并完成备份")
         elif new_file_path.exists():
@@ -263,12 +269,16 @@ def _update_file(update_info, bot_new_file):
         elif not new_file_path.exists():
             logger.error(f"尝试从新版本文件中更新文件 {f} ，但是新版本文件中不存在该文件")
     for f in move_file:
-        new_file_path = Path() / f["new"]
-        old_file_path = Path() / f["old"]
-        old_file = f["old"]
-        new_file = f["new"]
-        if new_file_path.exists():
+        new_file_path = Path() / f["new"].replace('.', r'\.')
+        old_file_path = Path() / f["old"].replace('.', r'\.')
+        old_file = f["old"].replace('.', r'\.')
+        new_file = f["new"].replace('.', r'\.')
+        if old_file_path.exists():
             new_file_path.parent.mkdir(exist_ok=True, parents=True)
+            if new_file_path.exists():
+                new_file_backup_path = Path() / "backup" / new_file_path
+                logger.warning(f"尝试移动文件 {old_file} 至 {new_file} ，但是目标文件已存在，进行强制覆盖，原文件已备份至 backup 文件夹")
+                shutil.move(new_file_path.absolute(), new_file_back_path.absolute())
             shutil.move(old_file_path.absolute(), new_file_path.absolute())
             logger.debug(f"已移动文件 {old_file} 至 {new_file}")
         else:
@@ -276,8 +286,8 @@ def _update_file(update_info, bot_new_file):
 
 
 def _update_dependency():
-    dep_file_user = Path() / "backup" / "pyproject.toml"
-    dep_file_org = Path() / "source" / "pyproject.toml"
+    dep_file_user = Path() / "source" / "dep" / "pyproject_user.toml"
+    dep_file_org = Path() / "source" / "dep" / "pyproject_org.toml"
     dep_file_new = Path() / "pyproject.toml"
 
     with open(dep_file_user, "r") as f:
@@ -303,13 +313,14 @@ def _update_dependency():
         if plugin not in nonebot_plugins_org:
             plugins_extra.append(plugin)
     
-    with open(dep_file_new, "r+") as f:
+    with open(dep_file_new, "r") as f:
         dep_data_new = toml.load(f)
-        for package in packages_extra:
-            dep_data_new['tool']['poetry']['dependencies'][package["neme"]] = package["version"]
-        for plugin in plugins_extra:
-            dep_data_new['tool']['nonebot']['plugins'].append(plugin)
-        dep_date_new_str = toml.dumps(dep_data_new)
+    for package in packages_extra:
+        dep_data_new['tool']['poetry']['dependencies'][package["neme"]] = package["version"]
+    for plugin in plugins_extra:
+        dep_data_new['tool']['nonebot']['plugins'].append(plugin)
+    dep_date_new_str = toml.dumps(dep_data_new)
+    with open(dep_file_new, "w") as f:
         f.write(dep_date_new_str)
     
     logger.debug("依赖处理完成")

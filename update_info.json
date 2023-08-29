@@ -24,10 +24,10 @@
             "move_bot_config": []
         },
         "nonebot": {
-            "nb_config_desc": ""
+            "nb_config_desc": "nonebot配置文件从 .env.dev 移动到了 .env.prod ，文件会自动移动（首次自动移动会报错，详见更新说明）"
         }
     },
     "desc": {
-        "update_desc": "更新nonebot2商店插件自定义功能，将nonebot配置文件从 .env.dev 移动到了 .env.prod ，优化了代码并维护了一些功能"
+        "update_desc": "本次更新为破坏更新，因为代码遗留问题首次更新会更新失败，失败后重启再次更新即可更新成功（会有一些小报错，完全不影响）"
     }
 }
