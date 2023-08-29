@@ -45,11 +45,17 @@ class NoVersionMatch(Exception):
 @driver.on_bot_connect
 async def dep_file_handle(bot: Bot):
     dep_file = Path() / "pyproject.toml"
-    dep_source_file = Path() / "source" / "pyproject.toml"
-    dep_source_file.parent.mkdir(exist_ok=True, parents=True)
-    if not dep_source_file.exists():
-        shutil.copy2(dep_file.absolute(), dep_source_file.absolute())
+    dep_org_source_file = Path() / "source" / "dep" / "pyproject_org.toml"
+    dep_user_source_file = Path() / "source" / "dep" / "pyproject_user.toml"
+    dep_org_source_file.parent.mkdir(exist_ok=True, parents=True)
+    dep_user_source_file.parent.mkdir(exist_ok=True, parents=True)
+    if not dep_file.exists():
+        logger.error("重大错误，依赖配置文件 pyproject.toml 不存在")
+        return None
+    if not dep_org_source_file.exists():
+        shutil.copy2(dep_file.absolute(), dep_org_source_file.absolute())
         logger.warning(f"检测到机器人原始依赖文件资源 {dep_source_file} 不存在，自动从用户依赖文件 {dep_file} 生成")
+    shutil.copy2(dep_file.absolute(), dep_user_source_file.absolute())
 
 
 @driver.on_bot_connect
@@ -235,9 +241,9 @@ def _update_file(update_info, bot_new_file):
     move_file = update_info["file"]["move_file"]
 
     dep_file = Path(bot_new_file) / "pyproject.toml"
-    dep_source_file = Path() / "source" / "pyproject.toml"
-    dep_source_file.parent.mkdir(exist_ok=True, parents=True)
-    shutil.copy2(dep_file.absolute(), dep_source_file.absolute())
+    dep_org_source_file = Path() / "source" / "dep" / "pyproject_org.toml"
+    dep_org_source_file.parent.mkdir(exist_ok=True, parents=True)
+    shutil.copy2(dep_file.absolute(), dep_org_source_file.absolute())
 
     for f in delete_file + update_file:
         file_path = Path() / f.replace('.', r'\.')
@@ -280,8 +286,8 @@ def _update_file(update_info, bot_new_file):
 
 
 def _update_dependency():
-    dep_file_user = Path() / "backup" / "pyproject.toml"
-    dep_file_org = Path() / "source" / "pyproject.toml"
+    dep_file_user = Path() / "source" / "dep" / "pyproject_user.toml"
+    dep_file_org = Path() / "source" / "dep" / "pyproject_org.toml"
     dep_file_new = Path() / "pyproject.toml"
 
     with open(dep_file_user, "r") as f:
