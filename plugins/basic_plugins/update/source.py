@@ -4,6 +4,7 @@ import platform
 import shutil
 import tarfile
 import httpx
+import toml
 import subprocess
 import ujson as json
 from pathlib import Path
@@ -42,7 +43,17 @@ class NoVersionMatch(Exception):
 
 
 @driver.on_bot_connect
-async def remind(bot: Bot):
+async def dep_file_handle(bot: Bot):
+    dep_file = Path() / "pyproject.toml"
+    dep_source_file = Path() / "source" / "pyproject.toml"
+    dep_source_file.parent.mkdir(exist_ok=True, parents=True)
+    if not dep_source_file.exists():
+        shutil.copy2(dep_file.absolute(), dep_source_file.absolute())
+        logger.warning(f"检测到机器人原始依赖文件资源 {dep_source_file} 不存在，自动从用户依赖文件 {dep_file} 生成")
+
+
+@driver.on_bot_connect
+async def restart_handle(bot: Bot):
     if str(platform.system()).lower() == "windows":
         restart = Path() / "restart.bat"
         if not restart.exists():
@@ -170,34 +181,15 @@ async def check_update(bot: Bot) -> Tuple[int, str]:
         return 998, error_info
 
 
-def _update_handle() -> str:
-    if not temp_dir.exists():
-        temp_dir.mkdir(exist_ok=True, parents=True)
-    if backup_dir.exists():
-        shutil.rmtree(backup_dir)
-    tar_file = None
-    backup_dir.mkdir(exist_ok=True, parents=True)
-    logger.info("开始解压机器人文件压缩包....")
-    tar_file = tarfile.open(update_tar_file)
-    tar_file.extractall(temp_dir)
-    logger.info("解压机器人文件压缩包完成....")
-    bot_new_file = Path(temp_dir) / os.listdir(temp_dir)[0]
-    update_info_file = Path(bot_new_file) / "update_info.json"
-    with open(update_info_file, "r", encoding="utf-8") as f:
-        update_info = json.load(f)
-    
+def _update_config(update_info):
     global nb_config_desc
     global update_desc
-    update_file = update_info["file"]["update_file"]
-    add_file = update_info["file"]["add_file"]
-    delete_file = update_info["file"]["delete_file"]
-    move_file = update_info["file"]["move_file"]
     add_bot_config = update_info["config"]["bot"]["add_bot_config"]
     delete_bot_config = update_info["config"]["bot"]["delete_bot_config"]
     move_bot_config = update_info["config"]["bot"]["move_bot_config"]
     nb_config_desc = update_info["config"]["nonebot"]["nb_config_desc"]
     update_desc = update_info["desc"]["update_desc"]
-    
+
     if add_bot_config:
         for c in add_bot_config:
             Config.add_plugin_config(
@@ -235,6 +227,18 @@ def _update_handle() -> str:
                 )
     logger.debug("配置已更新")
 
+
+def _update_file(update_info, bot_new_file):
+    update_file = update_info["file"]["update_file"]
+    add_file = update_info["file"]["add_file"]
+    delete_file = update_info["file"]["delete_file"]
+    move_file = update_info["file"]["move_file"]
+
+    dep_file = Path(bot_new_file) / "pyproject.toml"
+    dep_source_file = Path() / "source" / "pyproject.toml"
+    dep_source_file.parent.mkdir(exist_ok=True, parents=True)
+    shutil.copy2(dep_file.absolute(), dep_source_file.absolute())
+
     for f in delete_file + update_file:
         file_path = Path() / f
         backup_file_path = Path(backup_dir) / f
@@ -270,6 +274,78 @@ def _update_handle() -> str:
         else:
             logger.warning(f"尝试移动文件 {old_file} 至 {new_file} ，但是原文件不存在，跳过处理")
 
+
+def _update_dependency():
+    dep_file_user = Path() / "backup" / "pyproject.toml"
+    dep_file_org = Path() / "source" / "pyproject.toml"
+    dep_file_new = Path() / "pyproject.toml"
+
+    with open(dep_file_user, "r") as f:
+        dep_data_user = toml.load(f)
+    poetry_data_user = dep_data_user['tool']['poetry']['dependencies']
+    poetry_data_user = [{"name": k, "version": v} for k, v in poetry_data_user.items() if k != 'python']
+    nonebot_plugins_user = dep_data_user['tool']['nonebot']['plugins']
+
+    with open(dep_file_org, "r") as f:
+        dep_data_org = toml.load(f)
+    poetry_data_org = dep_data_org['tool']['poetry']['dependencies']
+    poetry_data_org = [{"name": k, "version": v} for k, v in poetry_data_org.items() if k != 'python']
+    nonebot_plugins_org = dep_data_org['tool']['nonebot']['plugins']
+    packages_org = [dep['name'] for dep in poetry_data_org]
+    
+    packages_extra = []
+    for package in poetry_data_user:
+        if package["name"] not in packages_org:
+            packages_extra.append(package)
+    
+    plugins_extra = []
+    for plugin in nonebot_plugins_user:
+        if plugin not in nonebot_plugins_org:
+            plugins_extra.append(plugin)
+    
+    with open(dep_file_new, "r+") as f:
+        dep_data_new = toml.load(f)
+        for package in packages_extra:
+            dep_data_new['tool']['poetry']['dependencies'][package["neme"]] = package["version"]
+        for plugin in plugins_extra:
+            dep_data_new['tool']['nonebot']['plugins'].append(plugin)
+        dep_date_new_str = toml.dumps(dep_data_new)
+        f.write(dep_date_new_str)
+    
+    logger.debug("依赖处理完成")
+
+    for i in range(1, 4):
+        try:
+            if packages_extra:
+                subprocess.run(['poetry', 'lock'], check=True, cwd=Path())
+            subprocess.run(['poetry', 'install'], check=True, cwd=Path())
+            logger.debug("依赖安装成功")
+            return ""
+        except subprocess.CalledProcessError as e:
+            error_message = str(e)
+            if i == 3:
+                error_info = f"更新依赖项失败，请自行排查问题并在机器人目录终端手动尝试更新，更新命令 'poetry install' ，错误信息：{error_message}"
+                return error_info
+
+def _update_handle() -> str:
+    if not temp_dir.exists():
+        temp_dir.mkdir(exist_ok=True, parents=True)
+    if backup_dir.exists():
+        shutil.rmtree(backup_dir)
+    tar_file = None
+    backup_dir.mkdir(exist_ok=True, parents=True)
+    logger.info("开始解压机器人文件压缩包....")
+    tar_file = tarfile.open(update_tar_file)
+    tar_file.extractall(temp_dir)
+    logger.info("解压机器人文件压缩包完成....")
+    bot_new_file = Path(temp_dir) / os.listdir(temp_dir)[0]
+    update_info_file = Path(bot_new_file) / "update_info.json"
+    with open(update_info_file, "r", encoding="utf-8") as f:
+        update_info = json.load(f)
+    
+    _update_config(update_info)
+    _update_file(update_info, bot_new_file)
+
     if tar_file:
         tar_file.close()
     if temp_dir.exists():
@@ -283,15 +359,11 @@ def _update_handle() -> str:
     with open(_version_file, "w", encoding="utf-8") as f:
         f.write(f"__version__: {releases_version}")
 
-    for i in range(1, 4):
-        try:
-            subprocess.run(['poetry', 'install'], check=True, cwd=Path())
-            return ""
-        except subprocess.CalledProcessError as e:
-            error_message = str(e)
-            if i == 3:
-                error_info = f"更新依赖项失败，请自行排查问题并在机器人目录终端手动尝试更新，更新命令 'poetry install' ，错误信息：{error_message}"
-                return error_info
+    error_info = _update_dependency()
+    if error_info:
+        return error_info
+    else:
+        return ""
 
 
 # 获取版本信息

@@ -47,11 +47,6 @@ yyxt = on_command(
     block=True,
     priority=10
 )
-zzjs = on_command(
-    '作者介绍',
-    block=True,
-    priority=10
-)
 bqsm = on_command(
     '版权声明',
     block=True,
@@ -171,7 +166,7 @@ dg = on_command(
 
 @cd.handle()  # 菜单响应体
 async def main(bot: Bot):
-    data = f"欢迎使用{list(bot.config.nickname)[0]}\n表情包系统：自动生成表情包\n人工智能：和我聊天，了解我的AI能力\n游戏系统：玩游戏，尽情娱乐\n视频系统：观看精彩视频\n图片系统：浏览美图\n娱乐系统：尽享快乐时光\n工具系统：实用工具，帮助生活\n音乐系统：畅听好歌，放松心情\n作者介绍：了解机器人背后的故事\n版权声明：版权归开发者所有\n请根据需要选择相应的功能。\n在消息中@我可以和我聊天。\n防封编码："
+    data = f"欢迎使用{list(bot.config.nickname)[0]}\n表情包系统：自动生成表情包\n人工智能：和我聊天，了解我的AI能力\n游戏系统：玩游戏，尽情娱乐\n视频系统：观看精彩视频\n图片系统：浏览美图\n娱乐系统：尽享快乐时光\n工具系统：实用工具，帮助生活\n音乐系统：畅听好歌，放松心情\n版权声明：了解机器人版权相关问题\n请根据需要选择相应的功能。\n在消息中@我可以和我聊天。\n防封编码："
     data += str(random.randint(10000, 99999))
     await cd.finish(data)
 
@@ -258,13 +253,6 @@ async def main():
     data = "发送 “表情包制作” 查看表情列表\n发送“表情详情+表情名/关键词”查看表情详细信息和表情预览\n发送“随机表情+图片/文字”可随机制作表情\nPS:随机范围为 图片/文字 数量符合要求的表情\n防封编码："
     data += str(random.randint(10000, 99999))
     await bqbxt.finish(data)
-
-
-@zzjs.handle()  # 作者介绍响应体
-async def main():
-    data = "机器人作者：ITSevin\n作者QQ：2720269770\n作者主页：home.sevin.cn\n防封编码："
-    data += str(random.randint(10000, 99999))
-    await zzjs.finish(data)
 
 
 @bqsm.handle()  # 版权声明响应体
