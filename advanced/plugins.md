@@ -16,7 +16,7 @@
 
 ```bash
 poetry add <插件pypi包名>
-poetry run nb pugin add <商店插件名>
+poetry run nb plugin add <商店插件名>
 ```
 
 > 在nb指令前有`poetry run`是为了在虚拟环境中使用nb指令添加插件
