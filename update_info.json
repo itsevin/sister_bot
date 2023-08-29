@@ -5,11 +5,17 @@
             "plugins/plugins",
             "poetry.lock",
             "pyproject.toml",
-            "source/config/config.json"
+            "source/config/config.json",
+            ".env"
         ],
         "add_file": [],
         "delete_file": [],
-        "move_file": []
+        "move_file": [
+            {
+                "new": ".env.prod",
+                "old": ".env.dev"
+            }
+        ]
     },
     "config": {
         "bot": {
@@ -22,6 +28,6 @@
         }
     },
     "desc": {
-        "update_desc": ""
+        "update_desc": "更新nonebot2商店插件自定义功能，将nonebot配置文件从 .env.dev 移动到了 .env.prod ，优化了代码并维护了一些功能"
     }
 }
