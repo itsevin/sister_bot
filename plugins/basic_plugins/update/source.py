@@ -267,8 +267,12 @@ def _update_file(update_info, bot_new_file):
         old_file_path = Path() / f["old"].replace('.', r'\.')
         old_file = f["old"].replace('.', r'\.')
         new_file = f["new"].replace('.', r'\.')
-        if new_file_path.exists():
+        if old_file_path.exists():
             new_file_path.parent.mkdir(exist_ok=True, parents=True)
+            if new_file_path.exists():
+                new_file_backup_path = Path() / "backup" / new_file_path
+                logger.warning(f"尝试移动文件 {old_file} 至 {new_file} ，但是目标文件已存在，进行强制覆盖，原文件已备份至 backup 文件夹")
+                shutil.move(new_file_path.absolute(), new_file_back_path.absolute())
             shutil.move(old_file_path.absolute(), new_file_path.absolute())
             logger.debug(f"已移动文件 {old_file} 至 {new_file}")
         else:
