@@ -313,13 +313,14 @@ def _update_dependency():
         if plugin not in nonebot_plugins_org:
             plugins_extra.append(plugin)
     
-    with open(dep_file_new, "r+") as f:
+    with open(dep_file_new, "r") as f:
         dep_data_new = toml.load(f)
-        for package in packages_extra:
-            dep_data_new['tool']['poetry']['dependencies'][package["neme"]] = package["version"]
-        for plugin in plugins_extra:
-            dep_data_new['tool']['nonebot']['plugins'].append(plugin)
-        dep_date_new_str = toml.dumps(dep_data_new)
+    for package in packages_extra:
+        dep_data_new['tool']['poetry']['dependencies'][package["neme"]] = package["version"]
+    for plugin in plugins_extra:
+        dep_data_new['tool']['nonebot']['plugins'].append(plugin)
+    dep_date_new_str = toml.dumps(dep_data_new)
+    with open(dep_file_new, "w") as f:
         f.write(dep_date_new_str)
     
     logger.debug("依赖处理完成")
