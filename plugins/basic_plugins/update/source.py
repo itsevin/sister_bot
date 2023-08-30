@@ -3,12 +3,12 @@ import os
 import platform
 import shutil
 import tarfile
-import httpx
 import toml
 import subprocess
 import ujson as json
 from pathlib import Path
 from typing import Tuple
+import httpx
 
 from nonebot import logger, get_driver
 from nonebot.adapters.onebot.v11 import Bot, Message
@@ -54,7 +54,7 @@ async def dep_file_handle(bot: Bot):
         return None
     if not dep_org_source_file.exists():
         shutil.copy2(dep_file.absolute(), dep_org_source_file.absolute())
-        logger.warning(f"检测到机器人原始依赖文件资源 {dep_source_file} 不存在，自动从用户依赖文件 {dep_file} 生成")
+        logger.warning(f"检测到机器人原始依赖文件资源 {dep_org_source_file} 不存在，自动从用户依赖文件 {dep_file} 生成")
     shutil.copy2(dep_file.absolute(), dep_user_source_file.absolute())
 
 
@@ -278,7 +278,7 @@ def _update_file(update_info, bot_new_file):
             if new_file_path.exists():
                 new_file_backup_path = Path() / "backup" / new_file_path
                 logger.warning(f"尝试移动文件 {old_file} 至 {new_file} ，但是目标文件已存在，进行强制覆盖，原文件已备份至 backup 文件夹")
-                shutil.move(new_file_path.absolute(), new_file_back_path.absolute())
+                shutil.move(new_file_path.absolute(), new_file_backup_path.absolute())
             shutil.move(old_file_path.absolute(), new_file_path.absolute())
             logger.debug(f"已移动文件 {old_file} 至 {new_file}")
         else:
