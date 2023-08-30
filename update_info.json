@@ -9,12 +9,7 @@
         ],
         "add_file": [],
         "delete_file": [],
-        "move_file": [
-            {
-                "new": "",
-                "old": ""
-            }
-        ]
+        "move_file": []
     },
     "config": {
         "bot": {
