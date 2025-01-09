@@ -4,9 +4,7 @@ from typing import Any, Dict, Optional, Type
 import builtins
 from nonebot import logger
 from pydantic import BaseModel
-from ruamel import yaml
-from ruamel.yaml import YAML
-from ruamel.yaml.scanner import ScannerError
+from ruamel.yaml import YAML, scanner
 import ujson as json
 
 
@@ -14,7 +12,6 @@ class Config(BaseModel):
     """
     配置项
     """
-
     value: Any
     """配置项值"""
     help_: Optional[str]
@@ -29,7 +26,6 @@ class ConfigGroup(BaseModel):
     """
     配置组
     """
-
     module: str
     """模块名"""
     configs: Dict[str, Config] = {}
@@ -46,6 +42,7 @@ class ConfigsManager:
         self._file = yaml_name
         self._user_file_path = Path() / "config" / "bot_config" / f"{self._file}.yaml"
         self._full_file_path = Path() / "config" / "bot_config" / "complete" / f"{self._file}.yaml"
+        self.yaml = YAML()
         self.load_data()
 
     def add_plugin_config(
@@ -79,7 +76,6 @@ class ConfigsManager:
             if _override:
                 config.value = value
         else:
-            key = key = key.upper()
             if not self._data.get(module):
                 self._data[module] = ConfigGroup(module=module)
             self._data[module].configs[key] = Config(
@@ -90,7 +86,7 @@ class ConfigsManager:
             )
         if auto_save:
             self.save_data()
-    
+
     def delete_plugin_config(
         self,
         module: str,
@@ -98,7 +94,7 @@ class ConfigsManager:
         auto_save: bool = True,
     ):
         """
-        添加一个配置，配置值不会被覆盖
+        删除一个配置
         :param module: 模块
         :param key: 键
         :param auto_save: 自动保存
@@ -151,7 +147,6 @@ class ConfigsManager:
         logger.debug(
             f"尝试获取配置 MODULE: [ {module} ] | KEY: [ {key} ]"
         )
-        key = key = key.upper()
         if module in self._data.keys() and (config := self._data[module].configs.get(key)):
             logger.debug(
                 f"获取配置 MODULE: [ {module} ] | KEY: [ {key} ] 成功"
@@ -188,13 +183,13 @@ class ConfigsManager:
                 )
             else:
                 try:
-                    if config.value:
+                    if config.value is not None:
                         if config.type_:
                             type_obj = getattr(builtins, config.type_)
                             value = type_obj(config.value)
                         else:
                             value = config.value
-                    elif config.default_value:
+                    elif config.default_value is not None:
                         if config.type_:
                             type_obj = getattr(builtins, config.type_)
                             value = type_obj(config.default_value)
@@ -236,35 +231,17 @@ class ConfigsManager:
         """
         保存用户配置至用户配置文件
         """
-        user_data = {}
-        for module, config_group in self._data.items():
-            for key, config in config_group.configs.items():
-                user_data.setdefault(module, {})[key] = config.value
-        with open(self._user_file_path, "w", encoding="utf-8") as f:
-            yaml.dump(
-                user_data, 
-                f, 
-                indent=2, 
-                Dumper=yaml.RoundTripDumper, 
-                allow_unicode=True
-            )
+        user_data = {module: {key: config.value for key, config in config_group.configs.items()} for module, config_group in self._data.items()}
+        with self._user_file_path.open("w", encoding="utf-8") as f:
+            self.yaml.dump(user_data, f)
 
     def save_full_data(self):
         """
         保存完整配置至完整配置文件
         """
-        full_data = {}
-        for module, config_group in self._data.items():
-            for key, config in config_group.configs.items():
-                full_data.setdefault(module, {})[key] = config.dict()
-        with open(self._full_file_path, "w", encoding="utf-8") as f:
-            yaml.dump(
-                full_data, 
-                f, 
-                indent=2, 
-                Dumper=yaml.RoundTripDumper, 
-                allow_unicode=True
-            )
+        full_data = {module: {key: config.dict() for key, config in config_group.configs.items()} for module, config_group in self._data.items()}
+        with self._full_file_path.open("w", encoding="utf-8") as f:
+            self.yaml.dump(full_data, f)
 
     def save_data(self):
         """
@@ -284,22 +261,21 @@ class ConfigsManager:
         """
         从用户配置文件加载数据
         """
-        with open(self._user_file_path, "r", encoding="utf-8") as f:
+        with self._user_file_path.open("r", encoding="utf-8") as f:
             content = f.read()
         if not content:
             logger.warning(f"用户配置文件 {self._file}.yaml 为空，开始从完整配置文件恢复用户配置文件")
             self.save_user_data()
             logger.info(f"用户配置文件 {self._file}.yaml 恢复成功")
-        _yaml = YAML()
         try:
-            with open(self._user_file_path, "r", encoding="utf-8") as f:
-                user_data = _yaml.load(f)
-        except ScannerError as e:
-            raise ScannerError(
-                    f"{e}\n**********************************************\n"
-                    f"** 可能为用户配置文件 {self._file}.yaml 填写不规范 *\n"
-                    f"**********************************************"
-                )
+            with self._user_file_path.open("r", encoding="utf-8") as f:
+                user_data = self.yaml.load(f)
+        except scanner.ScannerError as e:
+            raise scanner.ScannerError(
+                f"{e}\n**********************************************\n"
+                f"** 可能为用户配置文件 {self._file}.yaml 填写不规范 *\n"
+                f"**********************************************"
+            )
         count = 0
         for module, configs in user_data.items():
             for key, value in configs.items():
@@ -316,22 +292,21 @@ class ConfigsManager:
         """
         从完整配置文件加载数据
         """
-        with open(self._full_file_path, "r", encoding="utf-8") as f:
+        with self._full_file_path.open("r", encoding="utf-8") as f:
             content = f.read()
         if not content:
             logger.error(f"完整配置文件 {self._file}.yaml 为空，开始生成默认完整配置文件")
             self.generate_default()
             logger.info(f"默认完整配置文件 {self._file}.yaml 生成成功")
-        _yaml = YAML()
         try:
-            with open(self._full_file_path, "r", encoding="utf-8") as f:
-                full_data = _yaml.load(f)
-        except ScannerError as e:
-            raise ScannerError(
-                    f"{e}\n**********************************************\n"
-                    f"** 可能为完整配置文件 {self._file}.yaml 填写不规范 *\n"
-                    f"**********************************************"
-                )
+            with self._full_file_path.open("r", encoding="utf-8") as f:
+                full_data = self.yaml.load(f)
+        except scanner.ScannerError as e:
+            raise scanner.ScannerError(
+                f"{e}\n**********************************************\n"
+                f"** 可能为完整配置文件 {self._file}.yaml 填写不规范 *\n"
+                f"**********************************************"
+            )
         count = 0
         for module, configs in full_data.items():
             for key, config in configs.items():

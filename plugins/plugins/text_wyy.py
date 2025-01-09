@@ -1,5 +1,6 @@
 from nonebot import on_command
 import httpx
+import re
 
 
 wyyrp = on_command(
@@ -19,5 +20,6 @@ async def get_data():
     url = 'https://v.api.aa1.cn/api/api-wenan-wangyiyunreping/index.php?aa1=text'
     async with httpx.AsyncClient(timeout=30) as client:
         resp = await client.get(url)
-        data = resp.text.replace("<p>", "").replace("</p>", "")
+        match = re.search(r'<p>(.*?)</p>', resp.text, re.DOTALL)
+        data = match.group(1).strip()
     return data

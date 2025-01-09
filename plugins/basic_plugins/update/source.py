@@ -11,7 +11,7 @@ from typing import Tuple
 import httpx
 
 from nonebot import logger, get_driver
-from nonebot.adapters.onebot.v11 import Bot, Message
+from nonebot.adapters.onebot.v11 import Bot
 from utils.config import Config
 
 
@@ -25,13 +25,8 @@ temp_dir = Path() / "temp"
 backup_dir = Path() / "backup"
 
 proxy = Config.get_value("proxy", "proxy")
-if proxy:
-    proxies = {
-        "http://": proxy,
-        "https://": proxy
-    }
-else:
-    proxies = None
+if not proxy:
+    proxy = None
 
 
 class NoVersionData(Exception):
@@ -141,10 +136,10 @@ async def check_update(bot: Bot) -> Tuple[int, str]:
                     message=f"检测到机器人需要更新，当前版本：{_version}，下一版本：{releases_version}，最新版本：{latest_version}\n" f"开始更新",
                 )
             logger.debug(f"开始下载机器人 {releases_version} 版本文件")
-            async with httpx.AsyncClient(proxies=proxies) as client:
+            async with httpx.AsyncClient(proxy=proxy) as client:
                 resp = await client.get(tar_gz_url)
                 tar_gz_url = resp.headers.get("Location")
-            async with httpx.AsyncClient(proxies=proxies) as client:
+            async with httpx.AsyncClient(proxy=proxy) as client:
                 resp = await client.get(tar_gz_url)
                 status_code = resp.status_code
                 file_data = resp.content
@@ -381,7 +376,7 @@ def _update_handle() -> str:
 async def get_version_data() -> tuple[bool, any]:
     for i in range(3):
         try:
-            async with httpx.AsyncClient(timeout=30, proxies=proxies) as client:
+            async with httpx.AsyncClient(timeout=30, proxy=proxy) as client:
                 resp = await client.get(release_url)
                 if resp.status_code == 200:
                     return True, json.loads(resp.text)

@@ -1,11 +1,14 @@
 {
     "file": {
         "update_file": [
+            "utils",
             "plugins/basic_plugins",
             "plugins/plugins",
             "poetry.lock",
             "pyproject.toml",
-            "source/config/config.json"
+            "source/config/config.json",
+            "REAMDE.md",
+            ".env"
         ],
         "add_file": [],
         "delete_file": [],
@@ -18,10 +21,10 @@
             "move_bot_config": []
         },
         "nonebot": {
-            "nb_config_desc": ""
+            "nb_config_desc": "更改较大，请自行在仓库查看新版配置文件并进行比较，进行更新。"
         }
     },
     "desc": {
-        "update_desc": "更新后请尽快重启使更新生效以确保功能正常"
+        "update_desc": "本次更新是时隔一年的功能修复更新，修复了可以修复的功能，删除了很多已经失效或者不使用的功能，更改较大。gpt聊天功能的配置（config\naturel_gpt_config.yml）进行了更新，可以参考新版源码给的配置进行选择性更新（不改应该也可以用）。由于距离上次更新版本的时间很久了，所以不确定可以完全更新成功。更新后请尽快重启使更新生效以确保功能正常。"
     }
 }
